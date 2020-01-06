@@ -1,0 +1,18 @@
+.carousel {
+  width: 60%;
+  height: 25em;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 5em;
+
+  .gallery {
+    background-color: rgb(51, 49, 49);
+
+    .topic-link {
+      text-decoration: none;
+      color: rgb(228, 222, 222);
+      padding-bottom: 3em;
+      font-size: 1.2em;
+    }
+  }
+}

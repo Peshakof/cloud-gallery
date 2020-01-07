@@ -22,6 +22,7 @@ const Navigation = () => {
           <ul>
             <li><NavLink to="/dashboard" className="link">dashboard</NavLink></li>
             <li><NavLink to="/user-profile" className="link">user profile</NavLink></li>
+            <li><NavLink to="/upload-image" className="link">upload image</NavLink></li>
             <li><NavLink to="/login" className="link">login</NavLink></li>
             <li><NavLink to="/logout" className="link">logout</NavLink></li>
           </ul>

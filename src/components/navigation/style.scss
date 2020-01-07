@@ -1,24 +1,34 @@
 .site-header {
   .site-nav {
-    width: 18%;
+    width: 20%;
     padding-top: 2%;
     min-height: 100vh;
     position: fixed;
     
     ul {
       animation: slide 0.15s ease-in;
+      padding-left: 3em;
     }
 
     ul li {
       list-style: none;
-      padding: 0.6em 3.5em;
+      // padding: 0.6em 0em;
+      margin-bottom: 0.5em;
       text-align: left;
+      position: relative;
+      transform: translateY(0);
+      transition: 0.2s;
+
+      &:hover {
+        transform: translateY(-3px);
+      }
     }
 
     .link {
       text-decoration: none;
       color: rgb(59, 58, 58);
       font-weight: 500;
+      padding: 0.5em 1em;
     }
   }
 }

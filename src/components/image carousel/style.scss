@@ -1,12 +1,25 @@
 .carousel {
   width: 60%;
   height: 25em;
-  overflow: hidden;
   margin: 0 auto;
   margin-top: 5em;
-
+  
   .gallery {
-    background-color: rgb(51, 49, 49);
+    position: relative;
+    background-color: rgb(54, 52, 52);
+    box-shadow: -4px -4px 5px 0px #4e4f50, 5px 5px 6px 0px #0d0d0e;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      bottom: -2px;
+      left: -2px;
+      transform: skew(2deg, 2deg);
+      background: linear-gradient(315deg, rgb(63, 62, 62), rgb(129, 131, 130));
+      z-index: -1;
+    }
 
     .topic-link {
       text-decoration: none;

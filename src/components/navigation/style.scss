@@ -47,6 +47,7 @@
     left: 3em;
     font-size: 2.5em;
     color: rgb(59, 58, 58);
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .8));
 
     span {
       font-size: 0.7em;
@@ -99,6 +100,7 @@
     width: 100%;
     padding-top: 2.5%;
     font-weight: 700;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .8));
     
     span {
       font-size: 0.5em;

@@ -20,6 +20,7 @@ const Navigation = () => {
         </label>
         <nav className="site-nav">
           <ul>
+            <li><NavLink to="/" className="link">home</NavLink></li>
             <li><NavLink to="/dashboard" className="link">dashboard</NavLink></li>
             <li><NavLink to="/user-profile" className="link">user profile</NavLink></li>
             <li><NavLink to="/upload-image" className="link">upload image</NavLink></li>

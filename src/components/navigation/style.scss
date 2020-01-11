@@ -1,5 +1,7 @@
 .site-header {
+  
   .site-nav {
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .5));
     width: 20%;
     padding-top: 2%;
     min-height: 100vh;
@@ -53,6 +55,10 @@
       font-size: 0.7em;
       padding-left: 0.5em;
     }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -100,6 +106,7 @@
     width: 100%;
     padding-top: 2.5%;
     font-weight: 700;
+    color: rgb(59, 58, 58);
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .8));
     
     span {
@@ -123,6 +130,10 @@
     margin-left: 1em;
     border: 1px solid rgb(66, 64, 64);
     background-color: rgb(56, 54, 54);
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 

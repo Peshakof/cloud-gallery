@@ -1,0 +1,60 @@
+.register-form {
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 2.5em;
+  filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 1));
+
+
+  input.form-input {
+    border: none;
+    width: 60%;
+    padding: 0.5em 0 0.5em 1em;
+    border-bottom: 1px solid rgb(143, 142, 142);
+
+    &:focus {
+      border-bottom: 2px solid rgb(219, 10, 10);
+      outline: none;
+    }
+  }
+
+  input.upload-file {
+    border: none;
+    padding: 0.5em;
+    color: white;
+    width: 60%;
+    border-radius: 0.3em;
+    background-image: linear-gradient(to right top, #000000, #1eee0b);
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  img {
+    width: 20%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    border-radius: 0.4em;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+  }
+
+  input.signup-btn {
+    color: white;
+    border-radius: 0.3em;
+    padding: 0.5em 0;
+    border: none;
+    width: 60%;
+    background-image: linear-gradient(to right top, #101011, #341f3f, #741a56, #b9004c, #eb0d1e);
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .signup-btn:hover,
+  .upload-file:hover {
+    cursor: pointer;
+  }
+}

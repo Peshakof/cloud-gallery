@@ -5,6 +5,7 @@ import Navigation from './components/navigation';
 import Carousel from './components/image carousel';
 import ImgForm from './components/add-img-form';
 import Dashboard from './components/dashboard';
+import RegisterPage from './components/register page';
 
 import './App.css';
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" exact component={Carousel} />
           <Route path="/upload-image" exact component={ImgForm} />
           <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/signup" exact component={RegisterPage}/>
         </Switch>
       </Router>
     </div>

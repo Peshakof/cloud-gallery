@@ -3,11 +3,12 @@
   height: 25em;
   margin: 0 auto;
   margin-top: 5em;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+
   
-  .gallery {
+  .carousel-content {
     position: relative;
     background-color: rgb(54, 52, 52);
-    box-shadow: -4px -4px 5px 0px #4e4f50, 5px 5px 6px 0px #0d0d0e;
 
     &::before {
       content: '';
@@ -16,8 +17,9 @@
       right: -2px;
       bottom: -2px;
       left: -2px;
-      transform: skew(2deg, 2deg);
-      background: linear-gradient(315deg, rgb(63, 62, 62), rgb(129, 131, 130));
+      transform: skew(1deg, 1deg);
+      // background: linear-gradient(315deg, rgb(63, 62, 62), rgb(129, 131, 130));
+      background-image: linear-gradient(to right top, #741a56, #b9004c, #eb0d1e);
       z-index: -1;
     }
 

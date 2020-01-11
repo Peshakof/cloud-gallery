@@ -32,7 +32,7 @@ const Carousel = () => {
         <h2>choose a topic</h2>
       </header>
       <Gallery
-        className="gallery"
+        className="carousel-content"
         index={index}
         onRequestChange={i => {
           setIndex(i);

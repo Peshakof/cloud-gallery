@@ -14,7 +14,7 @@ const Navigation = () => {
       </section>
       <input type="checkbox" id="toggle-nav" className="toggle-nav"></input>
       <header className="site-header">
-        <label for="toggle-nav" className="toggle-nav-btn">
+        <label htmlFor="toggle-nav" className="toggle-nav-btn">
           <FontAwesome className="fas fa-bars"><span>menu</span></FontAwesome>
           <FontAwesome className="fas fa-times"><span>close</span></FontAwesome>
         </label>

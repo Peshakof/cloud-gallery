@@ -1,48 +1,71 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import registerValidator from '../../validations/register-validator';
+import userService from '../../services/user-service';
+
 import './style.scss';
 
-const RegisterPage = () => {
-
+const RegisterPage = (props) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPass, setRePassword] = useState('');
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const uploadImage = async e => {
-    const files = e.target.files;
-    const data = new FormData();
-    data.append('file', files[0]);
-    data.append('upload_preset', 'gallery');
+  const onChangeHandler = e => {
+    const files = e.target.files[0];
+    const formData = new FormData();
+    formData.append('upload_preset', 'profile-pic');
+    formData.append('file', files);
     setLoading(true);
-    const res = await fetch(
-      'https://api.cloudinary.com/v1_1/donaw6igw/image/upload',
-      {
-        method: 'POST',
-        body: data
-      }
-    )
 
-    const file = await res.json();
-    setImage(file.secure_url);
-    setLoading(false);
+    axios.post('https://api.cloudinary.com/v1_1/donaw6igw/image/upload', formData)
+        .then((res) => setImage(res.data.secure_url))
+        .then(() => {
+          setLoading(false)
+        })
+        .catch((err) => console.log(err));
+  }
+
+  const updateUsername = (e) => {
+    setUsername(e.target.value)
+  }
+
+  const updatePassword = (e) => {
+    setPassword(e.target.value);
+  }
+
+  const updateRePassword = (e) => {
+    setRePassword(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    if (registerValidator(username, password, repeatPass)) {
+      userService.register(username, password, image);
+      props.history.push('/signin');
+    }
   }
 
   return (
     <div className="register-form-wrapper">
-      <form className="register-form">
+      <form className="register-form" onSubmit={handleSubmit}>
         <header>
           <h3>Fill the form to signup</h3>
         </header>
         <p>
-          <input className="form-input" type="text" name="username" placeholder="username" />
+          <input className="form-input" type="text" name="username" placeholder="username" value={username} onChange={updateUsername}/>
         </p>
         <p>
-          <input className="form-input" type="password" name="password" placeholder="password" />
+          <input className="form-input" type="password" name="password" placeholder="password" value={password} onChange={updatePassword} />
         </p>
         <p>
-          <input className="form-input" type="password" name="repeat-pass" placeholder="confirm password" />
+          <input className="form-input" type="password" name="repeatPass" placeholder="confirm password" value={repeatPass} onChange={updateRePassword} />
         </p>
         <h4>choose your avatar</h4>
         <p>
-          <input className="upload-file" type="file" name="file" placeholder="choose avatar" onChange={uploadImage} />
+          <input className="upload-file" type="file" name="image" onChange={onChangeHandler} />
         </p>
         {loading ? (
           <h3>Loading...</h3>

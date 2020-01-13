@@ -2,7 +2,7 @@
   "name": "ex-be",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
     "heroku-postbuild": "cd front-end && npm install && npm run build"

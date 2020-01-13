@@ -4,8 +4,8 @@ const jwt = require('../modules/jwt');
 const config = require('../config/config')
 
 router.post('/register', (req, res, next) => {
-  const { username, password } = req.body;
-  User.create({ username, password })
+  const { username, password, avatar } = req.body;
+  User.create({ username, password, avatar })
     .then((user) => res.send(user))
     .catch(next);
 });

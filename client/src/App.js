@@ -14,11 +14,24 @@ import UserContext from './components/contexts/user-context';
 import { ToastContainer } from 'react-toastify';
 import Cookies from 'js-cookie';
 
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './themes';
+import { GlobalStyles } from './global';
+
 import './App.css';
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    if(theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  }
 
   const readCookie = () => {
     const authCookie = Cookies.get('token');
@@ -34,30 +47,32 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={{loggedIn, setLoggedIn}}>
-        <Router>
-          <Navigation />
-          <Switch>
-            <Route path="/" exact component={Carousel} />
-            <ProtectedRoute loggedIn={loggedIn} path="/upload-image" exact component={ImgForm} />
-            <Route path="/dashboard" exact component={Dashboard} />
-            <Route path="/signup" exact component={RegisterPage}/>
-            <Route path="/signin" exact component={LoginPage}/>
-            <Route path="/logout" exact component={Logout}/>
-          </Switch>
-          <ToastContainer
-          position="top-center"
-          autoClose={2500}
-          hideProgressBar
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnVisibilityChange
-          draggable
-          pauseOnHover
-          />
-        </Router>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <GlobalStyles />
+          <Router>
+            <Navigation toggleTheme={toggleTheme}/>
+            <Switch>
+              <Route path="/" exact component={Carousel} />
+              <ProtectedRoute loggedIn={loggedIn} path="/upload-image" exact component={ImgForm} />
+              <Route path="/dashboard" exact component={Dashboard} />
+              <Route path="/signup" exact component={RegisterPage}/>
+              <Route path="/signin" exact component={LoginPage}/>
+              <Route path="/logout" exact component={Logout}/>
+            </Switch>
+            <ToastContainer
+            position="top-center"
+            autoClose={2500}
+            hideProgressBar
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange
+            draggable
+            pauseOnHover
+            />
+          </Router>
+        </ThemeProvider>
       </UserContext.Provider>
-
     </div>
   );
 }

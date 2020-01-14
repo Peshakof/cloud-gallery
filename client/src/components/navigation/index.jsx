@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import './style.scss';
 
-const Navigation = () => {
-
-
+const Navigation = (props) => {
+  const toggleTheme = props.toggleTheme;
   return (
     <div className="nav-wrap">
       <section className="title">
-        <h1>cloud gallery <span>change theme<button type="button"></button></span></h1>
+        <h1>cloud gallery <span>change theme<button onClick={toggleTheme} type="button"></button></span></h1>
       </section>
       <input type="checkbox" id="toggle-nav" className="toggle-nav"></input>
       <header className="site-header">

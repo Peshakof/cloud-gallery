@@ -28,7 +28,7 @@
 
     .link {
       text-decoration: none;
-      color: rgb(59, 58, 58);
+      // color: rgb(59, 58, 58);
       font-weight: 500;
       padding: 0.5em 1em;
     }
@@ -48,7 +48,7 @@
     top: 1em;
     left: 3em;
     font-size: 2.5em;
-    color: rgb(59, 58, 58);
+    // color: rgb(59, 58, 58);
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .8));
 
     span {
@@ -106,7 +106,7 @@
     width: 100%;
     padding-top: 2.5%;
     font-weight: 700;
-    color: rgb(59, 58, 58);
+    // color: rgb(59, 58, 58);
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .8));
     
     span {
@@ -129,7 +129,7 @@
     outline: none;
     margin-left: 1em;
     border: 1px solid rgb(66, 64, 64);
-    background-color: rgb(56, 54, 54);
+    // background-color: rgb(56, 54, 54);
 
     &:hover {
       cursor: pointer;

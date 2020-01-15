@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import React, { useState, useContext } from 'react';
 import useInput from '../input-change-hook/useInputChange';
 import loginValidator from '../../validations/login-validator';
 import userService from '../../services/user-service';
+import { UserContext } from '../contexts/user-context';
+import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = (props) => {
 
+  const [auth, setAuth] = useContext(UserContext);
   const [username, bindUserName, updateUsername] = useInput('');
   const [password, bindPassword, updatePassword] = useInput('');
 
@@ -17,8 +20,20 @@ const LoginPage = (props) => {
     updatePassword();
 
     if (loginValidator(username, password)) {
-      userService.login(username, password);
-      props.history.push('/');
+      userService.login(username, password)
+        .then((res) => {
+          const {token, user} = res.data;
+          Cookies.set('token', token);
+          Cookies.set('user', user);
+          toast.success('You are logged in');
+          const cookie = Cookies.get('token') !== undefined;
+          setAuth(cookie)
+          console.log(auth)
+          props.history.push('/');
+        })
+        .catch(() => {
+          toast.error('Incorrect username or password!');
+        });
     }
   }   
 

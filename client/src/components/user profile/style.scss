@@ -1,0 +1,28 @@
+.user-profile {
+  margin-top: 3em;
+
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60%;
+    margin: 0 auto;
+    
+    h2 {
+      flex-basis: 60%;
+    }
+    
+    div.avatar-container {
+      // flex-basis: 30%;
+      width: 6em;
+      height: 6em;
+      
+      img {
+        border-radius: 50%;
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}

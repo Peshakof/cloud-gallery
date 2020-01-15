@@ -1,11 +1,19 @@
-import React, { useRef } from 'react';
+import React, {Fragment, useEffect, useState, useContext} from 'react';
+import { UserContext } from '../contexts/user-context';
+import Cookies from 'js-cookie';
+
 import { NavLink } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import './style.scss';
 
-const Navigation = (props) => {
-  const toggleTheme = props.toggleTheme;
+const Navigation = ({ toggleTheme }) => {
+  const [auth, setAuth] = useContext(UserContext);
+  const [isLogged, setIslogged] = useState(false);
+  useEffect(()=>{
+    setIslogged(auth);
+  },[auth])
+
   return (
     <div className="nav-wrap">
       <section className="title">
@@ -21,11 +29,18 @@ const Navigation = (props) => {
           <ul>
             <li><NavLink to="/" className="link">home</NavLink></li>
             <li><NavLink to="/dashboard" className="link">dashboard</NavLink></li>
-            <li><NavLink to="/user-profile" className="link">user profile</NavLink></li>
-            <li><NavLink to="/upload-image" className="link">upload image</NavLink></li>
-            <li><NavLink to="/signup" className="link">signup</NavLink></li>
-            <li><NavLink to="/signin" className="link">login</NavLink></li>
-            <li><NavLink to="/logout" className="link">logout</NavLink></li>
+            {
+               isLogged ? 
+              <Fragment>
+                <li><NavLink to="/user-profile" className="link">user profile</NavLink></li>
+                <li><NavLink to="/upload-image" className="link">upload image</NavLink></li>
+                <li><NavLink to="/logout" className="link">logout</NavLink></li>
+              </Fragment> : 
+              <Fragment>
+                <li><NavLink to="/signup" className="link">signup</NavLink></li>
+                <li><NavLink to="/signin" className="link">login</NavLink></li>
+              </Fragment>
+            } 
           </ul>
         </nav>
       </header>

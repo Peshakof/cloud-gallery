@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Cookies from 'js-cookie';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,32 +23,15 @@ const userRequester = {
   },
 
   login: (username, password) => {
-    axios
-      .post(`${host}/user/login`, {
-        username,
-        password
-      })
-      .then((res) => {
-        const {token, user} = res.data;
-        toast.success('You are logged in');
-        Cookies.set('token', token);
-        Cookies.set('user', user);
-      })
-      .catch(() => {
-        toast.error('Incorrect username or password!');
-      });
+   return axios
+    .post(`${host}/user/login`, {
+      username,
+      password
+    })
   },
 
   logout: () => {
-    axios.post(`${host}/user/logout`)
-      .then((res) => {
-        Cookies.remove('token');
-        Cookies.remove('user');
-        toast.success(`${res.data}`);
-      })
-      .catch(err => {
-        toast.error(err);
-      });
+    return axios.post(`${host}/user/logout`);
   }
 }
 

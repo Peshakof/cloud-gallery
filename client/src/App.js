@@ -9,8 +9,9 @@ import RegisterPage from './components/register page';
 import LoginPage from './components/login page';
 import ProtectedRoute from './components/protected-route';
 import Logout from './components/logout';
+import UserProfile from './components/user profile';
 
-import UserContext from './components/contexts/user-context';
+import { Auth } from './components/contexts/user-context';
 import { ToastContainer } from 'react-toastify';
 import Cookies from 'js-cookie';
 
@@ -34,7 +35,7 @@ function App() {
   }
 
   const readCookie = () => {
-    const authCookie = Cookies.get('token');
+    const authCookie = Cookies.get('token') !== undefined;
     if(authCookie) {
       setLoggedIn(true);
     }
@@ -42,18 +43,19 @@ function App() {
 
   useEffect(() => {
     readCookie();
-  }, []);
+  },[]);
 
   return (
     <div className="App">
-      <UserContext.Provider value={{loggedIn, setLoggedIn}}>
-      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <Auth>
+        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
           <Router>
             <Navigation toggleTheme={toggleTheme}/>
             <Switch>
               <Route path="/" exact component={Carousel} />
-              <ProtectedRoute loggedIn={loggedIn} path="/upload-image" exact component={ImgForm} />
+              <ProtectedRoute path="/upload-image" exact component={ImgForm} />
+              <ProtectedRoute path="/user-profile" exact component={UserProfile} />
               <Route path="/dashboard" exact component={Dashboard} />
               <Route path="/signup" exact component={RegisterPage}/>
               <Route path="/signin" exact component={LoginPage}/>
@@ -72,7 +74,7 @@ function App() {
             />
           </Router>
         </ThemeProvider>
-      </UserContext.Provider>
+      </Auth>
     </div>
   );
 }

@@ -4,18 +4,31 @@
   width: 70%;
   margin: 0 auto;
   margin-top: 6em;
+  padding: 1em 1.5em;
 
   ul.masonry {
-    column-count: 4;
-    column-gap: 1em;
-    row-gap: 1em;
+
+    @include layout( desktop ) {
+      column-count: 5;
+    }
+    @include layout( laptop ) {
+      column-count: 4;
+    }
+
+    @include layout( mobile ) {
+      column-count: 3;
+    }
+
+    @include layout( phone ) {
+      column-count: 1;
+    }
 
     li.item {
       list-style: none;
-      display: inline-block;
-      margin: 0 0 1em;
+      display: block;
       width: 100%;
-
+      margin: 1em;
+      
       img {
         width: 100%;
         height: auto;
@@ -23,12 +36,6 @@
         border-radius: 4px;
       }
 
-      p {
-        text-align: left;
-        margin: 0;
-        font-size: 1.2em;
-        padding-bottom: 0;
-      }
     }
   }
 }

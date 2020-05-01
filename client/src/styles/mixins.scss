@@ -7,7 +7,7 @@
   }
 
   @else if $point==desktop {
-    @media (min-width: 1250px) {
+    @media (min-width: 1280px) {
       @content;
     }
   }

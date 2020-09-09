@@ -1,19 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import './style.scss';
+import '../register page/style.scss';
 
 const AddImageForm = () => {
+  const [image, setImage] = useState('');
+  const [loading, setLoading] = useState(false);
 
+  const onChangeHandler = e => {
+    const files = e.target.files[0];
+    const formData = new FormData();
+    formData.append('upload_preset', 'gallery');
+    formData.append('file', files);
+    setLoading(true);
 
+    axios.post('https://api.cloudinary.com/v1_1/donaw6igw/image/upload', formData)
+      .then((res) => setImage(res.data.secure_url))
+      .then(() => {
+        setLoading(false)
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <section className="img-form">
       <section className="img-container">
         <h4>upload image</h4>
+        {loading ? (
+          <h3>Loading...</h3>
+        ) : (
+            <img src={image} alt="" />
+          )}
+        <img src={image} alt="image" style={{ width: '300px' }} />
       </section>
       <form className="img-props">
         <header>
           <h3>Tell everyone what your image is about</h3>
         </header>
+        <p>
+          <input type="file" onChange={onChangeHandler} />
+        </p>
         <p>
           <input type="text" name="title" placeholder="add your title here" />
         </p>
@@ -39,7 +65,7 @@ const AddImageForm = () => {
             <option value="square">square</option>
           </select>
         </p>
-        <p><input className="upload-btn" type="submit" value="save"/></p>
+        <p><input className="upload-btn" type="submit" value="save" /></p>
       </form>
     </section>
   )

@@ -12,6 +12,10 @@ const ImageSchema = new Schema({
     },
     imageUrl: {
         type: String
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 

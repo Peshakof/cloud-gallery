@@ -16,7 +16,11 @@ const UserSchema = new Schema({
   },
   avatar: {
     type: String,
-  }
+  },
+  images: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Image'
+  }]
 })
 
 UserSchema.methods = {

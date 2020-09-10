@@ -28,7 +28,6 @@ const LoginPage = (props) => {
           toast.success('You are logged in');
           const cookie = Cookies.get('token') !== undefined;
           setAuth(cookie)
-          console.log(auth)
           props.history.push('/');
         })
         .catch(() => {

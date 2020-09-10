@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
 import Navigation from './components/navigation';
 import Carousel from './components/image carousel';
 import ImgForm from './components/add-img-form';
@@ -50,7 +49,7 @@ function App() {
       <Auth>
         <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
-          <Router>
+          <Router >
             <Navigation toggleTheme={toggleTheme}/>
             <Switch>
               <Route path="/" exact component={Carousel} />

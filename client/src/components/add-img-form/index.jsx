@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import imageService from '../../services/image-service';
+import useImput from '../../hooks/userInputChange';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 import './style.scss';
 import '../register page/style.scss';
 
-const AddImageForm = () => {
+const AddImageForm = (props) => {
   const [image, setImage] = useState('');
+  const [title, bindTitle, updateTitle] = useImput('');
+  const [category, bindCategory, updateCategory] = useImput('');
   const [loading, setLoading] = useState(false);
+  const userId = JSON.parse(Cookies.get('user'))._id;
+  const history = useHistory();
 
   const onChangeHandler = e => {
     const files = e.target.files[0];
@@ -22,6 +31,22 @@ const AddImageForm = () => {
       .catch((err) => console.log(err));
   }
 
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    updateTitle();
+    updateCategory();
+
+    imageService.uploadImage({title, category, image, user: userId})
+      .then((response) => {
+        toast.success(response.data);
+        history.push('/user-profile');
+      })
+      .catch(err => {
+        toast.error(err);
+      })
+  }
+
   return (
     <section className="img-form">
       <section className="img-container">
@@ -33,7 +58,7 @@ const AddImageForm = () => {
           )}
         <img src={image} alt="image" style={{ width: '300px' }} />
       </section>
-      <form className="img-props">
+      <form className="img-props" onSubmit={handleSubmit}>
         <header>
           <h3>Tell everyone what your image is about</h3>
         </header>
@@ -41,10 +66,10 @@ const AddImageForm = () => {
           <input type="file" onChange={onChangeHandler} />
         </p>
         <p>
-          <input type="text" name="title" placeholder="add your title here" />
+          <input type="text" name="title" placeholder="add your title here" {...bindTitle}/>
         </p>
         <p>
-          <select name="category" id="ctaegory" className="category">
+          <select name="category" id="ctaegory" className="category" {...bindCategory}>
             <option value="">choose a category</option>
             <option value="pet">pet</option>
             <option value="places">places</option>

@@ -37,7 +37,7 @@ const AddImageForm = (props) => {
     updateTitle();
     updateCategory();
 
-    imageService.uploadImage({title, category, image, user: userId})
+    imageService.uploadImage({title, category, imageUrl: image, user: userId})
       .then((response) => {
         toast.success(response.data);
         history.push('/user-profile');
@@ -56,7 +56,7 @@ const AddImageForm = (props) => {
         ) : (
             <img src={image} alt="" />
           )}
-        <img src={image} alt="image" style={{ width: '300px' }} />
+        <img src={image} alt="image" />
       </section>
       <form className="img-props" onSubmit={handleSubmit}>
         <header>

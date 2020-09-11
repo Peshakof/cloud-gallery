@@ -13,4 +13,12 @@ router.post('/uploadImage', async(req, res, next) => {
     }
 })
 
+router.get('/getAll', async(req, res, next) => {
+    await Image.find({}).select('imageUrl')
+    .then((images) => {
+        res.send(images);
+    })
+    .catch(next);
+})
+
 module.exports = router;

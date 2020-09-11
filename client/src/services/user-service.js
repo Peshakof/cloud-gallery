@@ -32,6 +32,14 @@ const userRequester = {
 
   logout: () => {
     return axios.post(`${host}/user/logout`);
+  },
+
+  getUserInfo: (id) => {
+    return axios.get(`${host}/user/userInfo/${id}`);
+  },
+
+  getUserImages: (id) => {
+    return axios.get(`${host}/images/getUserImages/${id}`);
   }
 }
 

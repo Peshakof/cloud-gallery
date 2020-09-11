@@ -40,4 +40,13 @@ router.post('/logout', (req, res, next) => {
   res.clearCookie(config.authCookieName).send('Logout successfully!');
 })
 
+router.get('/userInfo/:id', (req, res, next) => {
+  const userId = req.params.id;
+  User.findById(userId)
+    .then((user) => {
+      res.send(user);
+    })
+    .catch(next);
+})
+
 module.exports = router;

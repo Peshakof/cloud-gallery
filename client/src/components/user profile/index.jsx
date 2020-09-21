@@ -15,29 +15,34 @@ class UserProfile extends Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     userService.getUserImages(this.state.userInfo._id)
       .then(res => {
-        this.setState({imagesCount: res.data.length})
+        this.setState({ imagesCount: res.data.length })
       })
     userService.getUserInfo(this.state.userInfo._id)
       .then(res => {
-        this.setState({userProfile: res.data})
+        this.setState({ userProfile: res.data })
       })
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="user-profile">
         <header>
           <h2>{this.state.userInfo.username}</h2>
           <div className="avatar-container">
-            <img src={this.state.userProfile.avatar} alt="avatar"/>
+            <img src={this.state.userProfile.avatar} alt="avatar" />
           </div>
+        </header>
+        <section className="images-count">
           <div>
             <p>images count: {this.state.imagesCount}</p>
           </div>
-        </header>
+        </section>
+        <section className="images-container">
+          
+        </section>
       </div>
     )
   }

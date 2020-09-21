@@ -2,6 +2,7 @@ import React, { Component, Fragment} from 'react';
 import { Link } from 'react-router-dom';
 import imageService from '../../services/image-service';
 import FontAwesome from 'react-fontawesome';
+import ImageContainer from '../image-container';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import './style.scss';
 
@@ -31,9 +32,7 @@ class Dashboard extends Component {
               images.map(image => {
                 console.log(image.imageUrl)
                 return (
-                  <li className="item">
-                    <img src={image.imageUrl} alt="image"/>
-                  </li>
+                  <ImageContainer image={image.imageUrl} />
                 )
               })
             }

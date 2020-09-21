@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import userService from '../../services/user-service';
-import imageService from '../../services/image-service';
+import ImageContainer from '../image-container';
 import Cookies from 'js-cookie';
 import './style.scss';
 
@@ -11,14 +11,16 @@ class UserProfile extends Component {
     this.state = {
       userProfile: {},
       userInfo: JSON.parse(Cookies.get('user')),
-      imagesCount: 0
+      imagesCount: 0,
+      images: []
     }
   }
 
   componentDidMount() {
     userService.getUserImages(this.state.userInfo._id)
       .then(res => {
-        this.setState({ imagesCount: res.data.length })
+        this.setState({ imagesCount: res.data.length });
+        this.setState({ images: res.data });
       })
     userService.getUserInfo(this.state.userInfo._id)
       .then(res => {
@@ -27,6 +29,8 @@ class UserProfile extends Component {
   }
 
   render() {
+    const images = this.state.images;
+
     return (
       <div className="user-profile">
         <header>
@@ -41,7 +45,15 @@ class UserProfile extends Component {
           </div>
         </section>
         <section className="images-container">
-          
+          <Fragment>
+            {
+              images.map(image => {
+                return(
+                  <ImageContainer image={image.imageUrl}/>
+                )
+              })
+            }
+          </Fragment>
         </section>
       </div>
     )

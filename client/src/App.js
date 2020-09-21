@@ -9,6 +9,7 @@ import LoginPage from './components/login page';
 import ProtectedRoute from './components/protected-route';
 import Logout from './components/logout';
 import UserProfile from './components/user profile';
+import ImageInfo from './components/image-info';
 
 import { Auth } from './components/contexts/user-context';
 import { ToastContainer } from 'react-toastify';
@@ -55,6 +56,7 @@ function App() {
               <Route path="/" exact component={Carousel} />
               <ProtectedRoute path="/upload-image" exact component={ImgForm} />
               <ProtectedRoute path="/user-profile" exact component={UserProfile} />
+              {/* <ProtectedRoute path="/image-info/:id" exact component={ImageInfo} /> */}
               <Route path="/dashboard" exact component={Dashboard} />
               <Route path="/signup" exact component={RegisterPage}/>
               <Route path="/signin" exact component={LoginPage}/>

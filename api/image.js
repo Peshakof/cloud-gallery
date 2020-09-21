@@ -23,11 +23,20 @@ router.get('/getAll', async(req, res, next) => {
 
 router.get('/getUserImages/:id', async(req, res, next) => {
     const userId = req.params.id;
-    await Image.find({user: userId}).select('_id')
+    await Image.find({user: userId})
         .then((images) => {
             res.send(images);
         })
         .catch(next);
+})
+
+router.get('image-info/:id', async(req, res, next) => {
+    const imageId = req.params.id;
+    await Image.findById(imageId)
+    .then(image => {
+        res.send(image);
+    })
+    .catch(next);
 })
 
 module.exports = router;

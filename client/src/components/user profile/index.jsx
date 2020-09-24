@@ -44,16 +44,18 @@ class UserProfile extends Component {
             <p>images count: {this.state.imagesCount}</p>
           </div>
         </section>
-        <section className="images-container">
-          <Fragment>
-            {
-              images.map(image => {
-                return(
-                  <ImageContainer image={image.imageUrl}/>
-                )
-              })
-            }
-          </Fragment>
+        <section className="gallery">
+          <ul className="masonry">
+            <Fragment>
+              {
+                images.map(image => {
+                  return (
+                    <ImageContainer image={image} />
+                  )
+                })
+              }
+            </Fragment>
+          </ul>
         </section>
       </div>
     )

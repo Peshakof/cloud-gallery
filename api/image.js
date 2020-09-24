@@ -30,13 +30,25 @@ router.get('/getUserImages/:id', async(req, res, next) => {
         .catch(next);
 })
 
-router.get('image-info/:id', async(req, res, next) => {
+router.get('/image-info/:id', async(req, res, next) => {
     const imageId = req.params.id;
     await Image.findById(imageId)
     .then(image => {
         res.send(image);
     })
     .catch(next);
+})
+
+router.put('/remove/:id', async(req, res, next) => {
+    const {userId} = req.body;
+    const imageId = req.params.id;
+    try {
+        await User.updateOne({_id: userId}, {$pull: {images: imageId}});
+        await Image.findByIdAndRemove(imageId);
+        res.send('Image deleted');
+    } catch (error) {
+        next(error);
+    }
 })
 
 module.exports = router;

@@ -21,7 +21,7 @@ import { GlobalStyles } from './global';
 
 import './App.css';
 
-function App() {
+function App(props) {
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [theme, setTheme] = useState('light');
@@ -57,6 +57,7 @@ function App() {
               <ProtectedRoute path="/upload-image" exact component={ImgForm} />
               <ProtectedRoute path="/user-profile" exact component={UserProfile} />
               {/* <ProtectedRoute path="/image-info/:id" exact component={ImageInfo} /> */}
+              <Route path="/image-info/:id" exact component={ImageInfo}  />
               <Route path="/dashboard" exact component={Dashboard} />
               <Route path="/signup" exact component={RegisterPage}/>
               <Route path="/signin" exact component={LoginPage}/>

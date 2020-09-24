@@ -15,6 +15,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount(){
+
     imageService.getAll()
     .then(res => {
       this.setState({images: res.data});
@@ -30,9 +31,8 @@ class Dashboard extends Component {
           <Fragment>
             {
               images.map(image => {
-                console.log(image.imageUrl)
                 return (
-                  <ImageContainer image={image.imageUrl} />
+                  <ImageContainer image={image} />
                 )
               })
             }

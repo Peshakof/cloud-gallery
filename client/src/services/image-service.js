@@ -17,6 +17,14 @@ const imageRequester = {
 
     uploadImage: (image) => {
         return axios.post(`${host}/images/uploadImage`, image);
+    },
+
+    removeImage: (id, userId) => {
+        return axios.put(`${host}/images/remove/${id}`, {userId});
+    },
+
+    editImage: (id, image) => {
+        return axios.put(`${host}/images/edit/${id}`, {image});
     }
 }
 

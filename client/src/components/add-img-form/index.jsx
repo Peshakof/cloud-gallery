@@ -82,15 +82,10 @@ const AddImageForm = (props) => {
             <option value="high-tech">high-tech</option>
           </select>
         </p>
-        <p>
-          <select name="aspect-ratio" id="aspect-ratio">
-            <option value="">choose the aspect ratio e.g 16x9</option>
-            <option value="portrait">portrait</option>
-            <option value="landscape">landscape</option>
-            <option value="square">square</option>
-          </select>
-        </p>
-        <p><input className="upload-btn" type="submit" value="save" /></p>
+        {/* <p>
+          <input type="text" name="descibtion"/>
+        </p> */}
+        <p><input className="submit-btn" type="submit" value="save" /></p>
       </form>
     </section>
   )

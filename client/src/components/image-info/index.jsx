@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import imageService from '../../services/image-service';
+import ImageForm from '../image-form';
 import './style.scss';
 
 class ImageInfo extends Component {
@@ -45,6 +46,7 @@ class ImageInfo extends Component {
                     <button onClick={this.removeImage}>Delete</button>
                     <button>Edit</button>
                 </div>
+                <ImageForm image={this.state}/>
             </section>
         )
     }

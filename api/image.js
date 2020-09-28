@@ -51,4 +51,17 @@ router.put('/remove/:id', async(req, res, next) => {
     }
 })
 
+router.put('/edit/:id', async(req, res, next) => {
+    const imageId = req.params.id;
+    const image = req.body;
+    try {
+        await Image.updateOne({_id: imageId}, image )
+            .then(() => {
+                res.send('image updated')
+            })
+    } catch (error) {
+        next(error)
+    }
+})
+
 module.exports = router;

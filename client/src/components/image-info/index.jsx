@@ -32,6 +32,7 @@ class ImageInfo extends Component {
     }
 
     render() {
+        
         return (
             <section className="image-info">
                 <div className="image-box">
@@ -46,7 +47,7 @@ class ImageInfo extends Component {
                     <button onClick={this.removeImage}>Delete</button>
                     <button>Edit</button>
                 </div>
-                <ImageForm image={this.state}/>
+                <ImageForm params={this.props.match.params} image={this.state}/>
             </section>
         )
     }

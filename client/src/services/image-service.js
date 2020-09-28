@@ -24,7 +24,7 @@ const imageRequester = {
     },
 
     editImage: (id, image) => {
-        return axios.put(`${host}/images/edit/${id}`, {image});
+        return axios.put(`${host}/images/edit/${id}`, image);
     }
 }
 

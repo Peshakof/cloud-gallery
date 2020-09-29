@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import imageService from '../../services/image-service';
-import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 class ImageForm extends Component {
   constructor(props) {
     super(props)
-    this.categoryRef = React.createRef();
-    this.petRef = React.createRef();  
-    
-  this.state = {}
-    
+
+    this.state = {}
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -24,8 +21,8 @@ class ImageForm extends Component {
   componentDidMount() {
     const id = this.props.params.id
     imageService.getCurrentImage(id)
-    .then(res => {
-      this.setState(res.data)
+      .then(res => {
+        this.setState(res.data)
       })
   }
 
@@ -35,13 +32,11 @@ class ImageForm extends Component {
     const id = this.state._id;
     const title = this.state.title;
     const category = this.state.category;
-    // const history = useHistory();
 
     imageService.editImage(id, { title, category })
       .then(response => {
-        console.log(response.data)
         toast.success(response.data);
-        // history.push(`/image-info/${id}`);
+        this.props.history.push(`/user-profile`);
       })
       .catch(err => {
         toast.error(err);
@@ -49,9 +44,8 @@ class ImageForm extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="edit-image-form">
         <p>
           <label htmlFor="title">Title</label>
           <input type="text" name="title" placeholder={this.state.title} onChange={this.handleChange} />

@@ -6,9 +6,13 @@ import './style.scss';
 class ImageInfo extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
-
+        this.state = {
+            style: { display: 'none' }
+        }
+        this.ref = React.createRef();
+        this.editFormRef = React.createRef();
         this.removeImage = this.removeImage.bind(this);
+        this.editImage = this.editImage.bind(this);
     }
 
     componentDidMount() {
@@ -23,16 +27,23 @@ class ImageInfo extends Component {
         const imageId = this.state._id;
         const user = this.state.user;
         imageService.removeImage(imageId, user)
-        .then(res => {
-            console.log(res.data);
-        })
-        .catch(err => {
-            console.error(err);
-        })
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }
+
+    editImage() {
+        if (this.editFormRef.current.style.display == 'none') {
+            this.editFormRef.current.style.display = 'block'
+        } else {
+            this.editFormRef.current.style.display = 'none'
+        }
     }
 
     render() {
-        
         return (
             <section className="image-info">
                 <div className="image-box">
@@ -45,9 +56,11 @@ class ImageInfo extends Component {
                 </div>
                 <div>
                     <button onClick={this.removeImage}>Delete</button>
-                    <button>Edit</button>
+                    <button onClick={this.editImage} ref={this.ref}>Edit</button>
                 </div>
-                <ImageForm params={this.props.match.params} image={this.state}/>
+                <div ref={this.editFormRef} style={this.state.style}>
+                    <ImageForm history={this.props.history} params={this.props.match.params} />
+                </div>
             </section>
         )
     }

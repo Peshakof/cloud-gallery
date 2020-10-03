@@ -10,6 +10,7 @@ class ImageInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            image: {},
             style: { display: 'none' },
             currentComment: '',
             commentsArr: []
@@ -27,17 +28,18 @@ class ImageInfo extends Component {
         const imageId = this.props.match.params.id
         imageService.getCurrentImage(imageId)
             .then(res => {
-                this.setState(res.data);
+                this.setState({ image: res.data });
             })
         commentsService.getAllComments(imageId)
             .then(res => {
                 this.setState({ commentsArr: res.data })
             })
+
     }
 
     removeImage() {
-        const imageId = this.state._id;
-        const user = this.state.user;
+        const imageId = this.state.image._id;
+        const user = this.state.image.user;
         imageService.removeImage(imageId, user)
             .then(res => {
             })
@@ -62,11 +64,11 @@ class ImageInfo extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        const id = this.state._id;
+        const id = this.state.image._id;
         const commentValue = this.state.currentComment;
         const user = JSON.parse(Cookies.get('user'));
         await commentsService.postComment({ image: id, value: commentValue, author: user._id })
-        await commentsService.getAllComments(this.state._id)
+        await commentsService.getAllComments(this.state.image._id)
             .then(res => {
                 this.setState({
                     commentsArr: res.data
@@ -77,20 +79,27 @@ class ImageInfo extends Component {
     }
 
     render() {
+        const currentUser = JSON.parse(Cookies.get('user'));
+        const imageAuthor = this.state.image.user;
+        const isMine = currentUser._id === imageAuthor;
+
         return (
             <section className="image-info">
                 <div className="image-box">
-                    <img src={this.state.imageUrl} />
+                    <img src={this.state.image.imageUrl} />
                 </div>
                 <div className="image-stats">
-                    <p className="image-title">title: {this.state.title}</p>
-                    <p className="image-author">author: {this.state.user}</p>
-                    <p className="image-category">category: {this.state.category}</p>
+                    <p className="image-title">title: {this.state.image.title}</p>
+                    <p className="image-author">author: {this.state.image.user}</p>
+                    <p className="image-category">category: {this.state.image.category}</p>
                 </div>
-                <div>
+                {
+                    isMine ? <div>
                     <button onClick={this.removeImage}>Delete</button>
                     <button onClick={this.editImage} ref={this.ref}>Edit</button>
-                </div>
+                    </div> : null
+                }
+                
                 <div ref={this.editFormRef} style={this.state.style}>
                     <ImageForm history={this.props.history} params={this.props.match.params} />
                 </div>

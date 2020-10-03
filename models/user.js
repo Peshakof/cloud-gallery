@@ -20,6 +20,10 @@ const UserSchema = new Schema({
   images: [{
     type: Schema.Types.ObjectId,
     ref: 'Image'
+  }],
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comment'
   }]
 })
 

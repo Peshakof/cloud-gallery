@@ -3,6 +3,7 @@ import imageService from '../../services/image-service';
 import commentsService from '../../services/commens-service';
 import ImageForm from '../image-form';
 import Comment from './comment';
+import Cookies from 'js-cookie';
 import './style.scss';
 
 class ImageInfo extends Component {
@@ -46,7 +47,7 @@ class ImageInfo extends Component {
     }
 
     editImage() {
-        if (this.editFormRef.current.style.display == 'none') {
+        if (this.editFormRef.current.style.display === 'none') {
             this.editFormRef.current.style.display = 'block'
         } else {
             this.editFormRef.current.style.display = 'none'
@@ -63,7 +64,8 @@ class ImageInfo extends Component {
         event.preventDefault();
         const id = this.state._id;
         const commentValue = this.state.currentComment;
-        await commentsService.postComment({ image: id, value: commentValue })
+        const user = JSON.parse(Cookies.get('user'));
+        await commentsService.postComment({ image: id, value: commentValue, author: user._id })
         await commentsService.getAllComments(this.state._id)
             .then(res => {
                 this.setState({
@@ -78,7 +80,7 @@ class ImageInfo extends Component {
         return (
             <section className="image-info">
                 <div className="image-box">
-                    <img src={this.state.imageUrl} alt="" />
+                    <img src={this.state.imageUrl} />
                 </div>
                 <div className="image-stats">
                     <p className="image-title">title: {this.state.title}</p>

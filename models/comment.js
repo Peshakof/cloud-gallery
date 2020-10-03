@@ -8,6 +8,10 @@ const CommentSchema = new Schema({
   },
   value: {
     type: String
+  },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 })
 

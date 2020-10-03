@@ -2,9 +2,9 @@ const router = require('express').Router();
 const { Comment, Image } = require('../models');
 
 router.post('/add', async(req, res, next) => {
-  const { image, value } = req.body;
+  const { image, value, author } = req.body;
   try {
-    const newComment = await Comment.create({image, value})
+    const newComment = await Comment.create({image, value, author})
     await Image.updateOne({_id: image}, { $push: {comments: newComment._id}});
     res.send(newComment)
   } catch (error) {

@@ -37,7 +37,7 @@ const AddImageForm = (props) => {
     updateTitle();
     updateCategory();
 
-    imageService.uploadImage({title, category, imageUrl: image, user: userId})
+    imageService.uploadImage({title, category, imageUrl: image, user: userId, likes: 0})
       .then((response) => {
         toast.success(response.data);
         history.push('/user-profile');

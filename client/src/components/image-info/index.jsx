@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import imageService from '../../services/image-service';
 import commentsService from '../../services/commens-service';
+import userService from '../../services/user-service';
 import ImageForm from '../image-form';
 import Comment from './comment';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 import './style.scss';
 
 class ImageInfo extends Component {
@@ -13,28 +15,43 @@ class ImageInfo extends Component {
             image: {},
             style: { display: 'none' },
             currentComment: '',
-            commentsArr: []
+            commentsArr: [],
+            uploader: {}
         }
         this.inputRef = React.createRef();
         this.editFormRef = React.createRef();
         this.commentsRef = React.createRef();
+        this.likesRef = React.createRef();
         this.removeImage = this.removeImage.bind(this);
         this.editImage = this.editImage.bind(this);
+        this.like = this.like.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
         const imageId = this.props.match.params.id
-        imageService.getCurrentImage(imageId)
-            .then(res => {
-                this.setState({ image: res.data });
+        // imageService.getCurrentImage(imageId)
+        //     .then(res => {
+        //         this.setState({ image: res.data });
+        //     })
+        // commentsService.getAllComments(imageId)
+        //     .then(res => {
+        //         this.setState({ commentsArr: res.data })
+        //     })
+        const image = imageService.getCurrentImage(imageId);
+        const comments = commentsService.getAllComments(imageId);
+        axios.all([image, comments]).then(
+            axios.spread((...results) => {
+                this.setState({ image: results[0].data })
+                this.setState({ commentsArr: results[1].data })
+                const id = this.state.image.user
+                userService.getUserInfo(id)
+                    .then(user => {
+                        this.setState({ uploader: user.data })
+                    })
             })
-        commentsService.getAllComments(imageId)
-            .then(res => {
-                this.setState({ commentsArr: res.data })
-            })
-
+        )
     }
 
     removeImage() {
@@ -54,6 +71,15 @@ class ImageInfo extends Component {
         } else {
             this.editFormRef.current.style.display = 'none'
         }
+    }
+
+    like() {
+        this.setState({
+            image: { likes: this.state.image.likes + 1 }
+        })
+
+        //todo: make a API call to set the new value of likes
+
     }
 
     handleChange(event) {
@@ -82,6 +108,8 @@ class ImageInfo extends Component {
         const currentUser = JSON.parse(Cookies.get('user'));
         const imageAuthor = this.state.image.user;
         const isMine = currentUser._id === imageAuthor;
+        const uploader = this.state.uploader.username;
+        const likes = this.state.image.likes;
 
         return (
             <section className="image-info">
@@ -90,16 +118,22 @@ class ImageInfo extends Component {
                 </div>
                 <div className="image-stats">
                     <p className="image-title">title: {this.state.image.title}</p>
-                    <p className="image-author">author: {this.state.image.user}</p>
+                    <p className="image-uploader">uploader: {uploader}</p>
                     <p className="image-category">category: {this.state.image.category}</p>
+                    <p className="image-likes" ref={this.likesRef}>likes: {likes}</p>
                 </div>
-                {
-                    isMine ? <div>
-                    <button onClick={this.removeImage}>Delete</button>
-                    <button onClick={this.editImage} ref={this.ref}>Edit</button>
-                    </div> : null
-                }
-                
+                <div>
+                    {
+                        isMine ? <div>
+                            <button onClick={this.removeImage}>Delete</button>
+                            <button onClick={this.editImage} ref={this.ref}>Edit</button>
+                            <button onClick={this.like} >Like</button>
+                        </div> :
+                            <button onClick={this.like} >Like</button>
+                    }
+                </div>
+
+
                 <div ref={this.editFormRef} style={this.state.style}>
                     <ImageForm history={this.props.history} params={this.props.match.params} />
                 </div>

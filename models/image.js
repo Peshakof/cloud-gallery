@@ -20,7 +20,10 @@ const ImageSchema = new Schema({
     comments: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'
-    }]
+    }],
+    likes: {
+        type: Number
+    }
 });
 
 module.exports = mongoose.model('Image', ImageSchema);

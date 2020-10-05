@@ -50,7 +50,7 @@ class UserProfile extends Component {
               {
                 images.map(image => {
                   return (
-                    <ImageContainer image={image} />
+                    <ImageContainer key={image._id} image={image} />
                   )
                 })
               }

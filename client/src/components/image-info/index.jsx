@@ -22,7 +22,6 @@ class ImageInfo extends Component {
         this.inputRef = React.createRef();
         this.editFormRef = React.createRef();
         this.commentsRef = React.createRef();
-        this.likesRef = React.createRef();
         this.likeBtn = React.createRef();
         this.removeImage = this.removeImage.bind(this);
         this.editImage = this.editImage.bind(this);
@@ -42,7 +41,7 @@ class ImageInfo extends Component {
                 const id = this.state.image.user
                 userService.getUserInfo(id)
                     .then(user => {
-                        this.setState({ uploader: user.data })
+                        this.setState({ uploader: user.data });
                     })
             })
         )
@@ -69,16 +68,28 @@ class ImageInfo extends Component {
 
     like() {
         let likes = ++this.state.image.likes;
+        const image = this.state.image;
         this.setState({
             isliked: true,
-            image: { likes: likes }
+            image: {
+                _id: image._id,
+                likes: likes,
+                imageUrl: image.imageUrl,
+                title: image.title,
+                category: image.category,
+                user: image.user,
+                comments: image.comments
+            }
         })
-        console.log(this.likeBtn.current)
-        console.log(this.state.image.likes)
+        const imageId = this.state.image._id;
+        const updatedImage = this.state.image;
 
-        imageService.editImage(this.state.image._id, this.state.image)
-            .then(res=>{
+        imageService.editImage(imageId, updatedImage)
+            .then(res => {
                 console.log(res.data);
+            })
+            .catch(err => {
+                console.error(err);
             })
     }
 
@@ -118,13 +129,13 @@ class ImageInfo extends Component {
         return (
             <section className="image-info">
                 <div className="image-box">
-                    <img src={image.imageUrl} />
+                    <img src={image.imageUrl} alt="image" />
                 </div>
                 <div className="image-stats">
-                    <p className="image-title">title: {this.state.image.title}</p>
+                    <p className="image-title">title: {image.title}</p>
                     <p className="image-uploader">uploader: {uploader}</p>
-                    <p className="image-category">category: {this.state.image.category}</p>
-                    <p className="image-likes" ref={this.likesRef}>likes: {likes}</p>
+                    <p className="image-category">category: {image.category}</p>
+                    <p className="image-likes">likes: {likes}</p>
                 </div>
                 <div>
                     {

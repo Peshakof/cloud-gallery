@@ -16,12 +16,14 @@ class ImageInfo extends Component {
             style: { display: 'none' },
             currentComment: '',
             commentsArr: [],
-            uploader: {}
+            uploader: {},
+            isliked: false
         }
         this.inputRef = React.createRef();
         this.editFormRef = React.createRef();
         this.commentsRef = React.createRef();
         this.likesRef = React.createRef();
+        this.likeBtn = React.createRef();
         this.removeImage = this.removeImage.bind(this);
         this.editImage = this.editImage.bind(this);
         this.like = this.like.bind(this);
@@ -31,14 +33,6 @@ class ImageInfo extends Component {
 
     componentDidMount() {
         const imageId = this.props.match.params.id
-        // imageService.getCurrentImage(imageId)
-        //     .then(res => {
-        //         this.setState({ image: res.data });
-        //     })
-        // commentsService.getAllComments(imageId)
-        //     .then(res => {
-        //         this.setState({ commentsArr: res.data })
-        //     })
         const image = imageService.getCurrentImage(imageId);
         const comments = commentsService.getAllComments(imageId);
         axios.all([image, comments]).then(
@@ -74,12 +68,18 @@ class ImageInfo extends Component {
     }
 
     like() {
+        let likes = ++this.state.image.likes;
         this.setState({
-            image: { likes: this.state.image.likes + 1 }
+            isliked: true,
+            image: { likes: likes }
         })
+        console.log(this.likeBtn.current)
+        console.log(this.state.image.likes)
 
-        //todo: make a API call to set the new value of likes
-
+        imageService.editImage(this.state.image._id, this.state.image)
+            .then(res=>{
+                console.log(res.data);
+            })
     }
 
     handleChange(event) {
@@ -105,16 +105,20 @@ class ImageInfo extends Component {
     }
 
     render() {
+        const image = this.state.image;
         const currentUser = JSON.parse(Cookies.get('user'));
-        const imageAuthor = this.state.image.user;
+        const imageAuthor = this.state.uploader._id;
         const isMine = currentUser._id === imageAuthor;
         const uploader = this.state.uploader.username;
         const likes = this.state.image.likes;
 
+        if (this.state.isliked) {
+            this.likeBtn.current.style.pointerEvents = 'none';
+        }
         return (
             <section className="image-info">
                 <div className="image-box">
-                    <img src={this.state.image.imageUrl} />
+                    <img src={image.imageUrl} />
                 </div>
                 <div className="image-stats">
                     <p className="image-title">title: {this.state.image.title}</p>
@@ -127,9 +131,9 @@ class ImageInfo extends Component {
                         isMine ? <div>
                             <button onClick={this.removeImage}>Delete</button>
                             <button onClick={this.editImage} ref={this.ref}>Edit</button>
-                            <button onClick={this.like} >Like</button>
+                            <button onClick={this.like} ref={this.likeBtn}>Like</button>
                         </div> :
-                            <button onClick={this.like} >Like</button>
+                            <button onClick={this.like} ref={this.likeBtn}>Like</button>
                     }
                 </div>
 

@@ -8,7 +8,6 @@ const Comment = (props) => {
     userSecvice.getUserInfo(userId)
       .then(user => {
         setUser(user.data)
-        console.log(user.data)
       })
       .catch(err => {
         console.error(err);

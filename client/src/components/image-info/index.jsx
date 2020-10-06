@@ -17,7 +17,8 @@ class ImageInfo extends Component {
             currentComment: '',
             commentsArr: [],
             uploader: {},
-            isliked: false
+            currentUser: ''
+            //todo 
         }
         this.inputRef = React.createRef();
         this.editFormRef = React.createRef();
@@ -39,9 +40,20 @@ class ImageInfo extends Component {
                 this.setState({ image: results[0].data })
                 this.setState({ commentsArr: results[1].data })
                 const id = this.state.image.user
+
                 userService.getUserInfo(id)
                     .then(user => {
-                        this.setState({ uploader: user.data });
+                        this.setState({
+                            uploader: user.data,
+                            currentUser: JSON.parse(Cookies.get('user'))
+                        })
+                        console.log(this.state)
+                        const image = this.state.image;
+                        const currentUser = this.state.currentUser._id;
+                        const liked = image.usersWhoLikedThis.includes(currentUser);
+                        if (liked) {
+                            this.likeBtn.current.style.pointerEvents = 'none';
+                        }
                     })
             })
         )
@@ -69,28 +81,34 @@ class ImageInfo extends Component {
     like() {
         let likes = ++this.state.image.likes;
         const image = this.state.image;
-        this.setState({
-            isliked: true,
-            image: {
-                _id: image._id,
-                likes: likes,
-                imageUrl: image.imageUrl,
-                title: image.title,
-                category: image.category,
-                user: image.user,
-                comments: image.comments
-            }
-        })
-        const imageId = this.state.image._id;
-        const updatedImage = this.state.image;
+        const currentUser = JSON.parse(Cookies.get('user'))
+        if (!image.usersWhoLikedThis.includes(currentUser._id)) {
+            let usersWhoLikedImage = image.usersWhoLikedThis.push(currentUser._id);
+            this.setState({
+                isliked: true,
+                image: {
+                    _id: image._id,
+                    likes: likes,
+                    imageUrl: image.imageUrl,
+                    title: image.title,
+                    category: image.category,
+                    user: image.user,
+                    comments: image.comments,
+                    usersWhoLikedThis: usersWhoLikedImage
+                }
+            })
+            const imageId = this.state.image._id;
+            const updatedImage = this.state.image;
 
-        imageService.editImage(imageId, updatedImage)
-            .then(res => {
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.error(err);
-            })
+            imageService.editImage(imageId, updatedImage)
+                .then(res => {
+                    console.log(res.data);
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+        }
+
     }
 
     handleChange(event) {
@@ -117,15 +135,14 @@ class ImageInfo extends Component {
 
     render() {
         const image = this.state.image;
-        const currentUser = JSON.parse(Cookies.get('user'));
+        const currentUser = this.state.currentUser;
         const imageAuthor = this.state.uploader._id;
         const isMine = currentUser._id === imageAuthor;
         const uploader = this.state.uploader.username;
         const likes = this.state.image.likes;
+        // console.log(isLiked)
 
-        if (this.state.isliked) {
-            this.likeBtn.current.style.pointerEvents = 'none';
-        }
+
         return (
             <section className="image-info">
                 <div className="image-box">

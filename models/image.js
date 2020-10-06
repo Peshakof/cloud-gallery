@@ -23,7 +23,11 @@ const ImageSchema = new Schema({
     }],
     likes: {
         type: Number
-    }
+    },
+    usersWhoLikedThis: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 });
 
 module.exports = mongoose.model('Image', ImageSchema);

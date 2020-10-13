@@ -47,7 +47,6 @@ class ImageInfo extends Component {
                             uploader: user.data,
                             currentUser: JSON.parse(Cookies.get('user'))
                         })
-                        console.log(this.state)
                         const image = this.state.image;
                         const currentUser = this.state.currentUser._id;
                         const liked = image.usersWhoLikedThis.includes(currentUser);
@@ -84,6 +83,7 @@ class ImageInfo extends Component {
         const currentUser = JSON.parse(Cookies.get('user'))
         if (!image.usersWhoLikedThis.includes(currentUser._id)) {
             let usersWhoLikedImage = image.usersWhoLikedThis.push(currentUser._id);
+            this.likeBtn.current.style.pointerEvents = 'none';
             this.setState({
                 isliked: true,
                 image: {
@@ -140,8 +140,6 @@ class ImageInfo extends Component {
         const isMine = currentUser._id === imageAuthor;
         const uploader = this.state.uploader.username;
         const likes = this.state.image.likes;
-        // console.log(isLiked)
-
 
         return (
             <section className="image-info">

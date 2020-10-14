@@ -34,16 +34,12 @@ class UserProfile extends Component {
     return (
       <div className="user-profile">
         <header>
-          <h2>{this.state.userInfo.username}</h2>
           <div className="avatar-container">
             <img src={this.state.userProfile.avatar} alt="avatar" />
           </div>
+          <h2>{this.state.userInfo.username}</h2>
+          <p>images count: {this.state.imagesCount}</p>
         </header>
-        <section className="images-count">
-          <div>
-            <p>images count: {this.state.imagesCount}</p>
-          </div>
-        </section>
         <section className="gallery">
           <ul className="masonry">
             <Fragment>

@@ -5,21 +5,30 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    flex-wrap: wrap;
     width: 60%;
     margin: 0 auto;
     
     h2 {
-      flex-basis: 60%;
+      flex-basis: 100%;
+      margin-bottom: 0;
     }
     
     div.avatar-container {
-      // flex-basis: 30%;
+      // flex-basis: 100%;
       width: 6em;
       height: 6em;
+      position: relative;
+      display: block;
+      overflow: hidden;
       
       img {
-        border-radius: 50%;
         display: block;
+        position: absolute;
+        border-radius: 0.2em;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 100%;
         height: auto;
       }

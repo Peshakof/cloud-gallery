@@ -78,7 +78,7 @@ class ImageInfo extends Component {
     }
 
     like() {
-        let likes = ++this.state.image.likes;
+        let likes = this.state.image.likes + 1;
         const image = this.state.image;
         const currentUser = JSON.parse(Cookies.get('user'))
         if (!image.usersWhoLikedThis.includes(currentUser._id)) {

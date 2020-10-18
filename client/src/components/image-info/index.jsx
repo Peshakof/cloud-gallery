@@ -6,6 +6,7 @@ import ImageForm from '../image-form';
 import Comment from './comment';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import FittedImage from 'react-fitted-image';
 import './style.scss';
 
 class ImageInfo extends Component {
@@ -37,6 +38,7 @@ class ImageInfo extends Component {
         const comments = commentsService.getAllComments(imageId);
         axios.all([image, comments]).then(
             axios.spread((...results) => {
+                console.log(results[0])
                 this.setState({ image: results[0].data })
                 this.setState({ commentsArr: results[1].data })
                 const id = this.state.image.user
@@ -144,30 +146,35 @@ class ImageInfo extends Component {
         return (
             <section className="image-info">
                 <div className="image-box">
-                    <img src={image.imageUrl} alt="image" />
+                    <FittedImage
+                        fit="contain"
+                        loader={<div>Loading</div>}
+                        onLoad={(...args) => console.log(...args)}
+                        onError={(...args) => console.log(...args)}
+                        src={image.imageUrl}
+                    />
                 </div>
                 <div className="image-stats">
                     <p className="image-title">title: {image.title}</p>
                     <p className="image-uploader">uploader: {uploader}</p>
                     <p className="image-category">category: {image.category}</p>
                     <p className="image-likes">likes: {likes}</p>
-                </div>
-                <div>
                     {
-                        isMine ? <div>
+                        isMine ? <div className="buttons">
                             <button onClick={this.removeImage}>Delete</button>
                             <button onClick={this.editImage} ref={this.ref}>Edit</button>
                             <button onClick={this.like} ref={this.likeBtn}>Like</button>
                         </div> :
-                            <button onClick={this.like} ref={this.likeBtn}>Like</button>
+                            <div className="buttons">
+                                <button onClick={this.like} ref={this.likeBtn}>Like</button>
+                            </div>
                     }
                 </div>
-
 
                 <div ref={this.editFormRef} style={this.state.style}>
                     <ImageForm history={this.props.history} params={this.props.match.params} />
                 </div>
-                <div ref={this.commentsRef}>
+                <div ref={this.commentsRef} className="comments">
                     <header>
                         <h4>Comments</h4>
                     </header>
@@ -176,7 +183,7 @@ class ImageInfo extends Component {
                             this.state.commentsArr.length ?
                                 this.state.commentsArr.map(comment => {
                                     return <Comment key={comment._id} comment={comment} />
-                                }) : <p>Add comment</p>
+                                }) : <p>Be the first who comment this</p>
                         }
                         <p>
                             <input ref={this.inputRef} type="text" name="comment" onChange={this.handleChange} value={this.state.currentComment} />

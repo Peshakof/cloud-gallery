@@ -7,9 +7,9 @@ const ImageContainer = (props) => {
         <li className="item">
             <LazyLoad height={180} offset={-50}>
                 <img key={props.image._id} src={props.image.imageUrl} alt="image" />
-                {/* <Link to={`/image-info/${props.image._id}`} >
+                <Link to={`/image-info/${props.image._id}`} >
                     view image
-                </Link> */}
+                </Link>
             </LazyLoad>
 
         </li>

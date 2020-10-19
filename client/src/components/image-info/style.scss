@@ -1,15 +1,15 @@
-.image-info{
+.image-info {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   width: 60%;
-  min-height:60vh;
+  min-height: 60vh;
   flex-wrap: wrap;
   margin: 5rem auto;
   box-shadow: 0 0 25px #55C0EB;
   padding: 1em;
 
-  .image-box{
+  .image-box {
     position: relative;
     overflow: hidden;
     flex-basis: 70%;
@@ -17,21 +17,21 @@
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, .8));
   }
 
-  .image-stats{
+  .image-stats {
     text-align: left;
     padding: 1rem;
     flex-basis: 30%;
 
-    p{
+    p {
       padding-bottom: 0.5em;
     }
 
-    .buttons{
+    .buttons {
       display: flex;
       justify-content: flex-start;
-      margin-top: 0.5em;;
+      margin-top: 0.5em;
 
-      button{
+      button {
         padding: 0.5em 1em;
         margin-right: 0.5em;
         width: 5em;
@@ -45,10 +45,84 @@
     }
   }
 
-  .comments{
+  .comments {
     flex-basis: 100%;
-    border: yellowgreen 2px solid;
     display: flex;
     justify-content: flex-start;
+
+    form {
+      width: 100%;
+      text-align: left;
+      margin-top: 1em;
+
+      header,
+      p.comment-input {
+        width: 100%;
+      }
+
+      p.comment-input {
+        padding-bottom: 0;
+      }
+
+      .comment-box {
+        width: 70%;
+        margin-bottom: 1em;
+
+        p {
+          width: 100%;
+          padding-bottom: 0;
+        }
+
+        p.user-container {
+          display: flex;
+          align-items: center;
+        }
+
+        p span.avatar {
+          width: 2em;
+          height: 2em;
+          display: block;
+          position: relative;
+          margin-right: 0.5em;
+
+          img {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+
+        p.comment {
+          font-weight: 300;
+        }
+      }
+
+      p.comment-input input {
+        width: 70%;
+      }
+
+      input{
+        font-size: 0.8em;
+        padding: 0.5em 1em;
+      }
+
+      input.button{
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        background-color: #55C0EB;
+        cursor: pointer;
+        margin-top: 0.5em;
+      }
+    }
+  }
+
+  button:hover,
+  input.button:hover{
+    transform: scale(1.1);
   }
 }

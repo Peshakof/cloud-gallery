@@ -15,12 +15,14 @@ const Comment = (props) => {
   }, [props])
 
   return (
-    <div>
-      <p>
-        <span><img src={user.avatar} alt="avatar" /></span>
+    <div className="comment-box">
+      <p className="user-container">
+        <span className="avatar">
+          <img src={user.avatar} alt="avatar" />
+        </span>
         <span>{user.username}</span>
       </p>
-      <p>{props.comment.value}</p>
+      <p className="comment">{props.comment.value}</p>
     </div>
   )
 }

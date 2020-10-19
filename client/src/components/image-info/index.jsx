@@ -175,21 +175,21 @@ class ImageInfo extends Component {
                     <ImageForm history={this.props.history} params={this.props.match.params} />
                 </div>
                 <div ref={this.commentsRef} className="comments">
-                    <header>
-                        <h4>Comments</h4>
-                    </header>
+
                     <form onSubmit={this.handleSubmit}>
-                        {
-                            this.state.commentsArr.length ?
+                        <header>
+                            <h4>Comments</h4>
+                        </header>
+                            {
                                 this.state.commentsArr.map(comment => {
                                     return <Comment key={comment._id} comment={comment} />
-                                }) : <p>Be the first who comment this</p>
-                        }
-                        <p>
+                                })
+                            }
+                        <p className="comment-input">
                             <input ref={this.inputRef} type="text" name="comment" onChange={this.handleChange} value={this.state.currentComment} />
                         </p>
                         <p>
-                            <input type="submit" value="Submit" />
+                            <input type="submit" value="Submit" className="button"/>
                         </p>
                     </form>
                 </div>

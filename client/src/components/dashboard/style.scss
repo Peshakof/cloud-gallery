@@ -9,13 +9,14 @@
   ul.masonry {
     width: 100%;
 
-    @include layout( desktop ) {
-      columns: 4;
-    }
     @include layout( laptop ) {
       columns: 3;
     }
-
+    
+    @include layout( desktop ) {
+      columns: 4;
+    }
+    
     @include layout( mobile ) {
       columns: 2;
     }

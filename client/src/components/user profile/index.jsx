@@ -37,7 +37,7 @@ class UserProfile extends Component {
           <div className="avatar-container">
             <img src={this.state.userProfile.avatar} alt="avatar" />
           </div>
-          <h2>{this.state.userInfo.username}</h2>
+          <h3>user: {this.state.userInfo.username}</h3>
           <p>images count: {this.state.imagesCount}</p>
         </header>
         <section className="gallery">

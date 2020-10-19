@@ -5,6 +5,7 @@ import useImput from '../../hooks/userInputChange';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
+import FittedImage from 'react-fitted-image';
 import './style.scss';
 import '../register page/style.scss';
 
@@ -37,7 +38,7 @@ const AddImageForm = (props) => {
     updateTitle();
     updateCategory();
 
-    imageService.uploadImage({title, category, imageUrl: image, user: userId, likes: 0, usersWhoLikedThis: []})
+    imageService.uploadImage({ title, category, imageUrl: image, user: userId, likes: 0, usersWhoLikedThis: [] })
       .then((response) => {
         toast.success(response.data);
         history.push('/user-profile');
@@ -50,13 +51,17 @@ const AddImageForm = (props) => {
   return (
     <section className="img-form">
       <section className="img-container">
-        <h4>upload image</h4>
-        {loading ? (
-          <h3>Loading...</h3>
-        ) : (
-            <img src={image} alt="" />
-          )}
-        <img src={image} alt="image" />
+
+        {/* <img src={image} alt="" /> */}
+        <FittedImage
+          fit="contain"
+          loader={<div>Loading</div>}
+          onLoad={(...args) => console.log(...args)}
+          onError={(...args) => console.log(...args)}
+          src={image}
+        />
+
+        <img src={image} alt="" />
       </section>
       <form className="img-props" onSubmit={handleSubmit}>
         <header>
@@ -66,7 +71,7 @@ const AddImageForm = (props) => {
           <input type="file" onChange={onChangeHandler} />
         </p>
         <p>
-          <input type="text" name="title" placeholder="add your title here" {...bindTitle}/>
+          <input type="text" name="title" placeholder="add your title here" {...bindTitle} />
         </p>
         <p>
           <select name="category" id="ctaegory" className="category" {...bindCategory}>

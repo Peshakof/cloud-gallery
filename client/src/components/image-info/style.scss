@@ -1,25 +1,73 @@
+@import '../../styles/mixins.scss';
+
 .image-info {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  width: 60%;
   min-height: 60vh;
   flex-wrap: wrap;
   margin: 5rem auto;
   box-shadow: 0 0 25px #55C0EB;
   padding: 1em;
 
+  
+
+  @include layout(mobile) {
+    width: 80%;
+
+    .image-box {
+      flex-basis: 100%;
+    }
+
+    .image-stats {
+      flex-basis: 100%;
+      margin-top: 2em;
+    }
+
+    .comments {
+      margin-top: 2em;
+    }
+  }
+
+
+
+  @include layout(laptop) {
+    width: 70%;
+
+    .image-box {
+      flex-basis: 65%;
+    }
+
+    .image-stats {
+      padding-left: 1em;
+    }
+    
+    .comments {
+      margin-top: 2em;
+    }
+  }
+
+  @include layout(desktop) {
+    width: 60%;
+
+    .image-box {
+      flex-basis: 70%;
+    }
+  }
+
+  @include layout(phone) {
+    width: 100%;
+  }
+
   .image-box {
     position: relative;
     overflow: hidden;
-    flex-basis: 70%;
     display: block;
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, .8));
   }
 
   .image-stats {
     text-align: left;
-    padding: 1rem;
     flex-basis: 30%;
 
     p {
@@ -29,12 +77,10 @@
     .buttons {
       display: flex;
       justify-content: flex-start;
-      margin-top: 0.5em;
 
       button {
         padding: 0.5em 1em;
         margin-right: 0.5em;
-        width: 5em;
         font-weight: 600;
         color: #fff;
         border: none;
@@ -53,7 +99,6 @@
     form {
       width: 100%;
       text-align: left;
-      margin-top: 1em;
 
       header,
       p.comment-input {
@@ -105,12 +150,12 @@
         width: 70%;
       }
 
-      input{
+      input {
         font-size: 0.8em;
         padding: 0.5em 1em;
       }
 
-      input.button{
+      input.button {
         color: #fff;
         border: none;
         border-radius: 3px;
@@ -122,7 +167,7 @@
   }
 
   button:hover,
-  input.button:hover{
+  input.button:hover {
     transform: scale(1.1);
   }
 }

@@ -54,6 +54,8 @@ class ImageInfo extends Component {
                         const liked = image.usersWhoLikedThis.includes(currentUser);
                         if (liked) {
                             this.likeBtn.current.style.pointerEvents = 'none';
+                            this.likeBtn.current.textContent = 'Liked';
+                            this.likeBtn.current.style.background = 'rgb(59, 58, 58)';
                         }
                     })
             })
@@ -86,6 +88,8 @@ class ImageInfo extends Component {
         if (!image.usersWhoLikedThis.includes(currentUser._id)) {
             let usersWhoLikedImage = image.usersWhoLikedThis.push(currentUser._id);
             this.likeBtn.current.style.pointerEvents = 'none';
+            this.likeBtn.current.textContent = 'Liked';
+            this.likeBtn.current.style.background = 'rgb(59, 58, 58)';
             this.setState({
                 isliked: true,
                 image: {
@@ -180,16 +184,16 @@ class ImageInfo extends Component {
                         <header>
                             <h4>Comments</h4>
                         </header>
-                            {
-                                this.state.commentsArr.map(comment => {
-                                    return <Comment key={comment._id} comment={comment} />
-                                })
-                            }
+                        {
+                            this.state.commentsArr.map(comment => {
+                                return <Comment key={comment._id} comment={comment} />
+                            })
+                        }
                         <p className="comment-input">
                             <input ref={this.inputRef} type="text" name="comment" onChange={this.handleChange} value={this.state.currentComment} />
                         </p>
                         <p>
-                            <input type="submit" value="Submit" className="button"/>
+                            <input type="submit" value="Submit" className="button" />
                         </p>
                     </form>
                 </div>

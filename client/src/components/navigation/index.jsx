@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState, useContext} from 'react';
+import React, {Fragment, useEffect, useState, useContext, useRef} from 'react';
 import { UserContext } from '../contexts/user-context';
 import Cookies from 'js-cookie';
 
@@ -7,19 +7,29 @@ import FontAwesome from 'react-fontawesome';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import './style.scss';
 
-const Navigation = ({ toggleTheme }) => {
+const Navigation = ({ toggleTheme, appRef }) => {
   const [auth, setAuth] = useContext(UserContext);
   const [isLogged, setIslogged] = useState(false);
+  const navBtnRef = useRef();
+  const navRef = useRef();
   useEffect(()=>{
     setIslogged(auth);
   },[auth])
+  
+  const blur = () => {
+    if(navBtnRef.current.checked) {
+      appRef.current.style.filter = 'blur(5px)';
+    } else {
+      appRef.current.style.filter = 'none';
+    }
+  }
 
   return (
-    <div className="nav-wrap">
+    <div className="nav-wrap" ref={navRef}>
       <section className="title">
         <h1>cloud gallery <span>change theme<button onClick={toggleTheme} type="button"></button></span></h1>
       </section>
-      <input type="checkbox" id="toggle-nav" className="toggle-nav"></input>
+      <input type="checkbox" id="toggle-nav" className="toggle-nav" onClick={blur} ref={navBtnRef}></input>
       <header className="site-header">
         <label htmlFor="toggle-nav" className="toggle-nav-btn">
           <FontAwesome className="fas fa-bars"/>

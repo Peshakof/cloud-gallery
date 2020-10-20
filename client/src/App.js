@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navigation from './components/navigation';
 import Carousel from './components/image carousel';
@@ -25,6 +25,7 @@ function App(props) {
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [theme, setTheme] = useState('light');
+  const appRef = useRef();
 
   const toggleTheme = () => {
     if(theme === 'light') {
@@ -46,22 +47,25 @@ function App(props) {
   },[]);
 
   return (
-    <div className="App">
+    <div className="App" >
       <Auth>
         <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
           <Router >
-            <Navigation toggleTheme={toggleTheme}/>
+            <Navigation toggleTheme={toggleTheme} appRef={appRef}/>
             <Switch>
-              <Route path="/" exact component={Carousel} />
-              <ProtectedRoute path="/upload-image" exact component={ImgForm} />
-              <ProtectedRoute path="/user-profile" exact component={UserProfile} />
-              {/* <ProtectedRoute path="/image-info/:id" exact component={ImageInfo} /> */}
-              <Route path="/image-info/:id" exact component={ImageInfo}  />
-              <Route path="/dashboard" exact component={Dashboard} />
-              <Route path="/signup" exact component={RegisterPage}/>
-              <Route path="/signin" exact component={LoginPage}/>
-              <Route path="/logout" exact component={Logout}/>
+              <div ref={appRef}>
+                <Route path="/" exact component={Carousel} />
+                <ProtectedRoute path="/upload-image" exact component={ImgForm} />
+                <ProtectedRoute path="/user-profile" exact component={UserProfile} />
+                {/* <ProtectedRoute path="/image-info/:id" exact component={ImageInfo} /> */}
+                <Route path="/image-info/:id" exact component={ImageInfo}  />
+                <Route path="/dashboard" exact component={Dashboard} />
+                <Route path="/signup" exact component={RegisterPage}/>
+                <Route path="/signin" exact component={LoginPage}/>
+                <Route path="/logout" exact component={Logout}/>
+              </div>
+              
             </Switch>
             <ToastContainer
             position="top-center"

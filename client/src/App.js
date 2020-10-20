@@ -53,8 +53,8 @@ function App(props) {
         <GlobalStyles />
           <Router >
             <Navigation toggleTheme={toggleTheme} appRef={appRef}/>
-            <Switch>
-              <div ref={appRef}>
+            <div ref={appRef}>
+              <Switch>
                 <Route path="/" exact component={Carousel} />
                 <ProtectedRoute path="/upload-image" exact component={ImgForm} />
                 <ProtectedRoute path="/user-profile" exact component={UserProfile} />
@@ -64,9 +64,8 @@ function App(props) {
                 <Route path="/signup" exact component={RegisterPage}/>
                 <Route path="/signin" exact component={LoginPage}/>
                 <Route path="/logout" exact component={Logout}/>
-              </div>
-              
-            </Switch>
+              </Switch>
+            </div>
             <ToastContainer
             position="top-center"
             autoClose={2500}

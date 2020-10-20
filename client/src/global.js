@@ -10,11 +10,11 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
-    transition: ease 0.8s;
+    transition: ease 0.3s;
   }
   
   a {
     color: ${({ theme }) => theme.links};
-    transition: ease 0.8s;
+    transition: ease 0.3s;
   }
   `

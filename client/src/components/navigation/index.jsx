@@ -17,10 +17,12 @@ const Navigation = ({ toggleTheme, appRef }) => {
   },[auth])
   
   const blur = () => {
-    if(navBtnRef.current.checked) {
-      appRef.current.style.filter = 'blur(5px)';
-    } else {
-      appRef.current.style.filter = 'none';
+    if(window.innerWidth <= 650) {
+      if(navBtnRef.current.checked) {
+        appRef.current.style.filter = 'blur(5px)';
+      } else {
+        appRef.current.style.filter = 'none';
+      }
     }
   }
 

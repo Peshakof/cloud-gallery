@@ -1,36 +1,87 @@
+@import '../../styles/mixins.scss';
+
 .site-header {
-  
+
   .site-nav {
     filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .5));
-    width: 20%;
     padding-top: 2%;
     min-height: 100vh;
     position: fixed;
-    
+
+    @include layout(laptop) {
+      width: 10em;
+
+      ul {
+        padding-left: 1em;
+
+        li {
+          text-align: left;
+        }
+      }
+    }
+
+    @include layout(desktop) {
+      width: 15%;
+
+      ul {
+        padding-left: 2em;
+      }
+    }
+
+    @include layout(mobile) {
+      width: 10em;
+
+      ul {
+        padding-left: 1em;
+
+        li {
+          text-align: left;
+        }
+      }
+    }
+
+    @include layout(phone) {
+      width: 100%;
+      z-index: 10;
+
+      ul {
+        padding-left: 0;
+
+        li {
+          text-align: center;
+          background-color: #55C0EB;
+
+          a {
+            color: #fff;
+          }
+        }
+      }
+    }
+
     ul {
       animation: slide 0.15s ease-in;
-      padding-left: 3em;
     }
 
     ul li {
       list-style: none;
-      // padding: 0.6em 0em;
       margin-bottom: 0.5em;
-      text-align: left;
       position: relative;
-      transform: translateY(0);
-      transition: 0.2s;
+      width: 100%;
 
       &:hover {
-        transform: translateY(-3px);
+        background-color: #55C0EB;
+      }
+
+      a:hover {
+        color: #fff;
       }
     }
 
     .link {
-      text-decoration: none;
-      // color: rgb(59, 58, 58);
-      font-weight: 500;
+      display: block;
       padding: 0.5em 1em;
+      text-decoration: none;
+      font-weight: 500;
     }
   }
 }
@@ -48,7 +99,6 @@
     top: 1em;
     left: 3em;
     font-size: 2.5em;
-    // color: rgb(59, 58, 58);
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .8));
 
     span {
@@ -106,12 +156,11 @@
     width: 100%;
     padding-top: 2.5%;
     font-weight: 700;
-    // color: rgb(59, 58, 58);
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .8));
-    
+
     span {
       font-size: 0.5em;
-      font-weight: 400;  
+      font-weight: 400;
       position: absolute;
       right: 6em;
       top: 1em;
@@ -129,7 +178,6 @@
     outline: none;
     margin-left: 1em;
     border: 1px solid rgb(66, 64, 64);
-    // background-color: rgb(56, 54, 54);
 
     &:hover {
       cursor: pointer;
@@ -139,11 +187,12 @@
 
 @keyframes slide {
   from {
-      opacity: 0;
-      transform: translate(-50%, 0);
+    opacity: 0;
+    transform: translate(-50%, 0);
   }
+
   to {
-      opacity: 1;
-      transform: translate(0);
+    opacity: 1;
+    transform: translate(0);
   }
 }

@@ -22,8 +22,8 @@ const Navigation = ({ toggleTheme }) => {
       <input type="checkbox" id="toggle-nav" className="toggle-nav"></input>
       <header className="site-header">
         <label htmlFor="toggle-nav" className="toggle-nav-btn">
-          <FontAwesome className="fas fa-bars"><span>menu</span></FontAwesome>
-          <FontAwesome className="fas fa-times"><span>close</span></FontAwesome>
+          <FontAwesome className="fas fa-bars"/>
+          <FontAwesome className="fas fa-times"/>
         </label>
         <nav className="site-nav">
           <ul>

@@ -1,9 +1,15 @@
+@import '../../styles/mixins.scss';
+
 .carousel {
   width: 60%;
   height: 25em;
   margin: 0 auto;
   margin-top: 5em;
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
+
+  // @include layout(phone) {
+    
+  // }
 
   
   .carousel-content {
@@ -18,9 +24,9 @@
       bottom: -2px;
       left: -2px;
       transform: skew(1deg, 1deg);
-      // background: linear-gradient(315deg, rgb(63, 62, 62), rgb(129, 131, 130));
-      background-image: linear-gradient(to right top, #741a56, #b9004c, #eb0d1e);
+      background-image: linear-gradient(to right top, #1493f6, #00acfb, #00c2fa, #41d6f6, #79e8f2);
       z-index: -1;
+      border-radius: .5em;
     }
 
     .topic-link {

@@ -9,7 +9,7 @@ const Carousel = () => {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      if (index === 4) {
+      if (index === 8) {
         setIndex(0);
       } else {
         setIndex(prev => prev + 1);
@@ -19,11 +19,43 @@ const Carousel = () => {
   }, [index]);
 
   const images = [
-    "https://images.unsplash.com/photo-1513780043732-614405263485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-    "https://images.unsplash.com/photo-1524642603405-a7c76bcde7eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-    "https://images.unsplash.com/photo-1524491496106-f413c4d2917b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-    "url(../../public/viber_изображение_2020-01-03_20-09-01.jpg)",
-    "https://images.unsplash.com/photo-1550640964-4775934de4af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+    {
+      category: 'pet',
+      src: "https://images.unsplash.com/photo-1512873897628-eea05c840147?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      category: 'places',
+      src: "https://images.unsplash.com/photo-1584011958148-eeba80e718e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      category: 'cars',
+      src: "https://images.unsplash.com/photo-1514867644123-6385d58d3cd4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      category: 'landscapes',
+      src: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      category: 'houses',
+      src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+    },
+    {
+      category: 'sport',
+      src: "https://images.unsplash.com/photo-1519119012096-c145def61801?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      category: 'people',
+      src: "https://images.unsplash.com/photo-1504703395950-b89145a5425b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      category: 'nature',
+      src: "https://images.unsplash.com/photo-1588392382834-a891154bca4d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      category: 'technology',
+      src: "https://images.unsplash.com/photo-1561883088-039e53143d73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
+    }
+    
   ];
 
   return (
@@ -34,14 +66,16 @@ const Carousel = () => {
       <Gallery
         className="carousel-content"
         index={index}
+        enableControls={true}
+        enableIndicators={true}
         onRequestChange={i => {
           setIndex(i);
         }}
       >
         {images.map(image => (
           <React.Fragment >
-            <GalleryImage objectFit="contain" key={image} src={image} />
-            <Link className="topic-link">link to topic goes here</Link>
+            <GalleryImage objectFit="contain" key={image.src} src={image.src} className="gallery-image"/>
+            <Link className="topic-link">{image.category}</Link>
           </React.Fragment>
         ))}
       </Gallery>

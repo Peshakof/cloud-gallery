@@ -10,6 +10,7 @@ import ProtectedRoute from './components/protected-route';
 import Logout from './components/logout';
 import UserProfile from './components/user profile';
 import ImageInfo from './components/image-info';
+import Category from './components/dashboard/category';
 
 import { Auth } from './components/contexts/user-context';
 import { ToastContainer } from 'react-toastify';
@@ -61,6 +62,15 @@ function App(props) {
                 {/* <ProtectedRoute path="/image-info/:id" exact component={ImageInfo} /> */}
                 <Route path="/image-info/:id" exact component={ImageInfo}  />
                 <Route path="/dashboard" exact component={Dashboard} />
+                <Route path="/dashboard/sport" exact component={Category} />
+                <Route path="/dashboard/pet" exact component={Category} />
+                <Route path="/dashboard/cars" exact component={Category} />
+                <Route path="/dashboard/people" exact component={Category} />
+                <Route path="/dashboard/landscapes" exact component={Category} />
+                <Route path="/dashboard/houses" exact component={Category} />
+                <Route path="/dashboard/nature" exact component={Category} />
+                <Route path="/dashboard/high-tech" exact component={Category} />
+                <Route path="/dashboard/places" exact component={Category} />
                 <Route path="/signup" exact component={RegisterPage}/>
                 <Route path="/signin" exact component={LoginPage}/>
                 <Route path="/logout" exact component={Logout}/>

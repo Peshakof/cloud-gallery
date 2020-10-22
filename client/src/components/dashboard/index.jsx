@@ -16,8 +16,6 @@ const Dashboard = () => {
       })
   }, [])
 
-  
-
   return (
     <section className="gallery">
       <ul className="masonry">

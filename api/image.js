@@ -14,7 +14,7 @@ router.post('/uploadImage', async(req, res, next) => {
 })
 
 router.get('/getAll', async(req, res, next) => {
-    await Image.find({}).select('imageUrl')
+    await Image.find({})
     .then((images) => {
         res.send(images);
     })

@@ -64,17 +64,27 @@
 
     ul li {
       list-style: none;
-      margin-bottom: 0.5em;
       position: relative;
       width: 100%;
+      border-left: 3px solid transparent;
 
       &:hover {
-        background-color: #55C0EB;
+        border-left: 3px solid #55C0EB;
       }
+    }
 
-      a:hover {
-        color: #fff;
-      }
+    .fa-chevron-down {
+      color: #55C0EB;
+      padding-left: 0.5em;
+    }
+
+    .inner-nav {
+      display: none;
+    }
+
+    .inner {
+      width: 100%;
+      transform: translateX(-20px);
     }
 
     .link {

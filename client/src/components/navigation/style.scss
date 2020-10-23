@@ -160,25 +160,84 @@
 }
 
 .title {
-  position: relative;
+  position: fixed;
+  padding-top: 1rem;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: rgb(59, 58, 58);
+  opacity: 0.95;
+  color: #FAFAFA;
 
-  h1 {
-    width: 100%;
-    padding-top: 2.5%;
-    font-weight: 700;
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .8));
+  @include layout(laptop) {
+
+    h1,
+    span {
+      flex-basis: 33%;
+    }
+
+    h1 {
+      padding-left: 3rem;
+    }
 
     span {
-      font-size: 0.5em;
-      font-weight: 400;
-      position: absolute;
-      right: 6em;
-      top: 1em;
-      padding: 1.5em 1em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 0 3rem;
     }
+
+    button {
+      margin-left: 1em;
+    }
+  }
+
+  @include layout(mobile) {
+
+    h1,
+    span {
+      flex-basis: 50%;
+    }
+
+    h1 {
+      padding-left: 1rem;
+      text-align: left;
+      margin: 0;
+    }
+
+    span {
+      padding: 0 1rem;
+      margin-left: 0;
+      justify-content: flex-end;
+    }
+  }
+
+  @include layout(phone) {
+    h1, span {
+      flex-basis: 100%;
+      text-align: left;
+      margin-bottom: 1rem;
+    }
+
+    span {
+      justify-content: flex-start;
+    }    
+  }
+
+  h1 {
+    font-weight: 700;
+    color: #55C0EB;
+  }
+
+  span {
+    font-size: 1.5em;
+    font-weight: 400;
+    text-align: left;
+    // position: absolute;
+    // right: 6em;
+    // top: 1em;
+    display: flex;
+    align-items: center;
   }
 
   button {
@@ -186,8 +245,9 @@
     height: 2em;
     border-radius: 50%;
     outline: none;
-    margin-left: 1em;
     border: 1px solid rgb(66, 64, 64);
+    box-shadow: 0 0 8px #55C0EB;
+
 
     &:hover {
       cursor: pointer;

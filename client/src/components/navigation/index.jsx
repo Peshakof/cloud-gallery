@@ -69,7 +69,8 @@ const Navigation = ({ toggleTheme, appRef }) => {
   return (
     <div className="nav-wrap" ref={navRef}>
       <section className="title">
-        <h1>cloud gallery <span>change theme<button onClick={toggleTheme} type="button"></button></span></h1>
+        <h1>cloud gallery</h1>
+        <span>toggle theme<button onClick={toggleTheme} type="button"></button></span>
       </section>
       <input type="checkbox" id="toggle-nav" className="toggle-nav" onClick={blur} ref={navBtnRef}></input>
       <header className="site-header">

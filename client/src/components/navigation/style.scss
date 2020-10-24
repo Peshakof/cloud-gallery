@@ -4,20 +4,38 @@
 
   .site-nav {
     filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .5));
-    padding-top: 2%;
-    min-height: 100vh;
+    // padding: 1rem 0;
+    // min-height: 100vh;
     position: fixed;
-    z-index: 10;
+    z-index: 110;
 
     @include layout(laptop) {
       width: 10em;
+      margin-top: 6rem;
 
       ul {
-        padding-left: 1em;
+        padding-left: 2rem;
 
         li {
           text-align: left;
+
+          &:hover {
+            border-left: 3px solid #55C0EB;
+          }
         }
+        
+        li a {
+          padding: 0.3em 0.6em 0.3em 0;
+        }
+      }
+
+      .fa-chevron-down {
+        color: #55C0EB;
+        font-size: 0.7em;
+      }
+      
+      .inner {
+        padding-left: 0.5rem;
       }
     }
 
@@ -30,32 +48,36 @@
     }
 
     @include layout(mobile) {
-      width: 10em;
+      width: 100%;
+      margin-top: 3.1rem;
 
       ul {
-        padding-left: 1em;
 
         li {
           text-align: left;
+          background-color: #55C0EB;
+          border-bottom: 1px solid #fff;
+          padding-left: 0;
         }
+
+        li a {
+          color: #fff;
+          padding: 0.5em 1em 0.5em 2rem;
+        }
+      }
+
+      .fa-chevron-down {
+        color: #fff;
+        font-size: 0.7em;
+      }
+
+      .inner {
+        padding-left: 3rem;
       }
     }
 
     @include layout(phone) {
-      width: 100%;
-
-      ul {
-        padding-left: 0;
-
-        li {
-          text-align: center;
-          background-color: #55C0EB;
-
-          a {
-            color: #fff;
-          }
-        }
-      }
+      margin-top: 5rem;
     }
 
     ul {
@@ -67,29 +89,28 @@
       position: relative;
       width: 100%;
       border-left: 3px solid transparent;
-
-      &:hover {
-        border-left: 3px solid #55C0EB;
-      }
     }
 
     .fa-chevron-down {
-      color: #55C0EB;
       padding-left: 0.5em;
     }
 
     .inner-nav {
       display: none;
-    }
 
+      ul {
+        padding-left: 0;
+      }
+    }
+    
     .inner {
+      text-align: left;
       width: 100%;
       transform: translateX(-20px);
     }
 
     .link {
       display: block;
-      padding: 0.5em 1em;
       text-decoration: none;
       font-weight: 500;
     }
@@ -103,12 +124,45 @@
     display: none;
   }
 
+ 
+
+  @include layout (laptop) {
+    .fas {
+      top: 7rem;
+      left: 2rem;
+      font-size: 2.5em;
+    }
+  }
+
+  @include layout (desktop) {
+    .fas {
+      top: 7rem;
+      left: 3rem;
+      font-size: 2.5em;
+    }
+  }
+
+  @include layout (mobile) {
+    .fas {
+      color: #fff;
+      top: 3.7rem;
+      left: 2rem;
+      font-size: 2.5em;
+    }
+  }
+
+  @include layout (phone) {
+    .fas {
+      top: 4.7rem;
+      left: 2rem;
+      font-size: 2.5em;
+    }
+  }
+
   .fas {
     position: absolute;
     z-index: 1000;
-    top: 1em;
-    left: 3em;
-    font-size: 2.5em;
+    
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .8));
 
     span {
@@ -161,7 +215,7 @@
 
 .title {
   position: fixed;
-  padding-top: 1rem;
+  padding: 1rem 0;
   top: 0;
   width: 100%;
   z-index: 100;
@@ -181,10 +235,12 @@
 
     h1 {
       padding-left: 3rem;
+      text-align: left;
     }
 
     span {
       padding: 0 3rem;
+      justify-content: flex-end;
     }
 
     button {
@@ -196,12 +252,12 @@
 
     h1,
     span {
-      flex-basis: 50%;
+      flex-basis: 100%;
     }
 
     h1 {
       padding-left: 1rem;
-      text-align: left;
+      text-align: center;
       margin: 0;
     }
 
@@ -214,15 +270,13 @@
 
   @include layout(phone) {
     h1, span {
-      flex-basis: 100%;
-      text-align: left;
       margin-bottom: 1rem;
-    }
-
-    span {
-      justify-content: flex-start;
-    }    
+    }   
   }
+
+  // h1, span {
+  //   border: red 1px solid;
+  // }
 
   h1 {
     font-weight: 700;

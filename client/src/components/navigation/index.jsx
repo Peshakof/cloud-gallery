@@ -87,23 +87,15 @@ const Navigation = ({ toggleTheme, appRef }) => {
               </NavLink>
               <nav className="inner-nav" ref={innerNavRef}>
                 <ul>
-                  <li>
-                    <NavLink to="/dashboard/pet" className="link inner">pet</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/dashboard/sport" className="link inner">sport</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/dashboard/people" className="link inner">people</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/dashboard/nature" className="link inner">nature</NavLink>
-                  </li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
+                  <li><NavLink to="/dashboard/pet" className="link inner">pet</NavLink></li>
+                  <li><NavLink to="/dashboard/sport" className="link inner">sport</NavLink></li>
+                  <li><NavLink to="/dashboard/people" className="link inner">people</NavLink></li>
+                  <li><NavLink to="/dashboard/nature" className="link inner">nature</NavLink></li>
+                  <li><NavLink to="/dashboard/houses" className="link inner">houses</NavLink></li>
+                  <li><NavLink to="/dashboard/places" className="link inner">places</NavLink></li>
+                  <li><NavLink to="/dashboard/landscapes" className="link inner">landscapes</NavLink></li>
+                  <li><NavLink to="/dashboard/hign-tech" className="link inner">high-tech</NavLink></li>
+                  <li><NavLink to="/dashboard/cars" className="link inner">cars</NavLink></li>
                 </ul>
               </nav>
             </li>

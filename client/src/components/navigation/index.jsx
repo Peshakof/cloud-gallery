@@ -82,11 +82,12 @@ const Navigation = ({ toggleTheme, appRef }) => {
           <ul>
             <li><NavLink to="/" className="link">home</NavLink></li>
             <li>
-              <NavLink onClick={animate} to="/dashboard" className="link">dashboard
+              <NavLink onClick={animate} to="" className="link">categories
               <FontAwesome className="fas fa-chevron-down"></FontAwesome>
               </NavLink>
               <nav className="inner-nav" ref={innerNavRef}>
                 <ul>
+                  <li><NavLink to="/dashboard" className="link inner">all</NavLink></li>
                   <li><NavLink to="/dashboard/pet" className="link inner">pet</NavLink></li>
                   <li><NavLink to="/dashboard/sport" className="link inner">sport</NavLink></li>
                   <li><NavLink to="/dashboard/people" className="link inner">people</NavLink></li>

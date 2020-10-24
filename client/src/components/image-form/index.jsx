@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import imageService from '../../services/image-service';
 import { toast } from 'react-toastify';
+import './styles.scss';
 
 class ImageForm extends Component {
   constructor(props) {
@@ -46,12 +47,13 @@ class ImageForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="edit-image-form">
+        <h4>Edit this image</h4>
         <p>
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">Title:</label>
           <input type="text" name="title" placeholder={this.state.title} onChange={this.handleChange} />
         </p>
         <p>
-          <label htmlFor="category">Category</label>
+          <label htmlFor="category">Category:</label>
           <select name="category" id="ctaegory" value={this.state.category} className="category" onChange={this.handleChange}>
             <option value="pet">pet</option>
             <option value="places">places</option>
@@ -64,7 +66,7 @@ class ImageForm extends Component {
             <option value="high-tech">high-tech</option>
           </select>
         </p>
-        <p><input className="submit-btn" type="submit" value="submit" /></p>
+        <p><input className="submit-btn" type="submit" value="Submit changes" /></p>
       </form>
     )
   }

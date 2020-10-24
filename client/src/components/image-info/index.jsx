@@ -7,6 +7,7 @@ import Comment from './comment';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import FittedImage from 'react-fitted-image';
+import anime from 'animejs/lib/anime.es.js';
 import './style.scss';
 
 class ImageInfo extends Component {
@@ -76,7 +77,25 @@ class ImageInfo extends Component {
     editImage() {
         if (this.editFormRef.current.style.display === 'none') {
             this.editFormRef.current.style.display = 'block'
+            anime.timeline({
+                easing: 'linear',
+                duration: '300'
+              })
+              .add({
+                targets: '.edit-form-container',
+                opacity: [0,1],
+                delay:100
+              })
         } else {
+            anime.timeline({
+                easing: 'linear',
+                duration: '200'
+            })
+            .add({
+                targets: '.edit-form-container',
+                opacity: [1,0],
+                delay:100
+            })
             this.editFormRef.current.style.display = 'none'
         }
     }
@@ -175,7 +194,7 @@ class ImageInfo extends Component {
                     }
                 </div>
 
-                <div ref={this.editFormRef} style={this.state.style}>
+                <div ref={this.editFormRef} style={this.state.style} className="edit-form-container">
                     <ImageForm history={this.props.history} params={this.props.match.params} />
                 </div>
                 <div ref={this.commentsRef} className="comments">

@@ -10,8 +10,6 @@
   box-shadow: 0 0 25px #55C0EB;
   padding: 1em;
 
-  
-
   @include layout(mobile) {
     width: 80%;
 
@@ -27,9 +25,12 @@
     .comments {
       margin-top: 2em;
     }
+
+    .edit-form-container {
+      flex-basis: 100%;
+      margin-top: 2rem;
+    }
   }
-
-
 
   @include layout(laptop) {
     width: 70%;
@@ -45,14 +46,15 @@
     .comments {
       margin-top: 2em;
     }
+
+    .edit-form-container {
+      flex-basis: 65%;
+      margin-top: 2rem;
+    }
   }
 
   @include layout(desktop) {
     width: 60%;
-
-    .image-box {
-      flex-basis: 70%;
-    }
   }
 
   @include layout(phone) {
@@ -68,7 +70,6 @@
 
   .image-stats {
     text-align: left;
-    flex-basis: 30%;
 
     p {
       padding-bottom: 0.5em;
@@ -90,6 +91,11 @@
       }
     }
   }
+
+  // .edit-form-container {
+  //   opacity: 0;
+  //   transform: translateY(-250px);
+  // }
 
   .comments {
     flex-basis: 100%;

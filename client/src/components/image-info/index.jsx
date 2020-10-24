@@ -19,7 +19,8 @@ class ImageInfo extends Component {
             currentComment: '',
             commentsArr: [],
             uploader: {},
-            currentUser: ''
+            currentUser: '',
+            isLoading: false
             //todo 
         }
         this.inputRef = React.createRef();
@@ -37,11 +38,14 @@ class ImageInfo extends Component {
         const imageId = this.props.match.params.id
         const image = imageService.getCurrentImage(imageId);
         const comments = commentsService.getAllComments(imageId);
+        
         axios.all([image, comments]).then(
             axios.spread((...results) => {
-                console.log(results[0])
-                this.setState({ image: results[0].data })
-                this.setState({ commentsArr: results[1].data })
+                this.setState({ 
+                    image: results[0].data,
+                    commentsArr: results[1].data,
+                    isLoading: true 
+                })
                 const id = this.state.image.user
 
                 userService.getUserInfo(id)
@@ -60,6 +64,7 @@ class ImageInfo extends Component {
                         }
                     })
             })
+            
         )
     }
 
@@ -166,16 +171,26 @@ class ImageInfo extends Component {
         const uploader = this.state.uploader.username;
         const likes = this.state.image.likes;
 
+        console.log(this.state.isLoading)
         return (
             <section className="image-info">
                 <div className="image-box">
-                    <FittedImage
+                    {
+                        this.state.isLoading ? (<FittedImage
                         fit="contain"
                         loader={<div>Loading</div>}
                         onLoad={(...args) => console.log(...args)}
                         onError={(...args) => console.log(...args)}
                         src={image.imageUrl}
-                    />
+                    />) : (<FittedImage
+                        fit="contain"
+                        loader={<div>Loading</div>}
+                        onLoad={(...args) => console.log(...args)}
+                        onError={(...args) => console.log(...args)}
+                        src="https://i.pinimg.com/originals/dc/aa/7a/dcaa7a90d62a19169bfa46c1c6625696.gif"
+                    />)
+                    }
+                    
                 </div>
                 <div className="image-stats">
                     <p className="image-title">title: {image.title}</p>

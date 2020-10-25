@@ -10,6 +10,34 @@
   box-shadow: 0 0 25px #55C0EB;
   padding: 1em;
 
+  
+
+  @include layout(laptop) {
+    width: 70%;
+
+    .image-box {
+      flex-basis: 65%;
+    }
+
+    .image-stats {
+      padding-left: 1em;
+    }
+    
+    .comments {
+      flex-basis: 65%;
+      margin-top: 2em;
+    }
+
+    .edit-form-container {
+      flex-basis: 65%;
+      margin-top: 2rem;
+    }
+  }
+
+  @include layout(desktop) {
+    width: 60%;
+  }
+
   @include layout(mobile) {
     width: 80%;
     margin-top: 10rem;
@@ -25,37 +53,13 @@
 
     .comments {
       margin-top: 2em;
+      flex-basis: 100%;
     }
 
     .edit-form-container {
       flex-basis: 100%;
       margin-top: 2rem;
     }
-  }
-
-  @include layout(laptop) {
-    width: 70%;
-
-    .image-box {
-      flex-basis: 65%;
-    }
-
-    .image-stats {
-      padding-left: 1em;
-    }
-    
-    .comments {
-      margin-top: 2em;
-    }
-
-    .edit-form-container {
-      flex-basis: 65%;
-      margin-top: 2rem;
-    }
-  }
-
-  @include layout(desktop) {
-    width: 60%;
   }
 
   @include layout(phone) {
@@ -99,7 +103,6 @@
   // }
 
   .comments {
-    flex-basis: 100%;
     display: flex;
     justify-content: flex-start;
 
@@ -117,7 +120,7 @@
       }
 
       .comment-box {
-        width: 70%;
+        width: 100%;
         margin-bottom: 1em;
 
         p {
@@ -154,7 +157,7 @@
       }
 
       p.comment-input input {
-        width: 70%;
+        width: 100%;
       }
 
       input {

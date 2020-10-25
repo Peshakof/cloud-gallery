@@ -214,7 +214,7 @@ class ImageInfo extends Component {
                 </div>
                 <div ref={this.commentsRef} className="comments">
 
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit} className="comment-form">
                         <header>
                             <h4>Comments</h4>
                         </header>
@@ -227,7 +227,7 @@ class ImageInfo extends Component {
                             <input ref={this.inputRef} type="text" name="comment" onChange={this.handleChange} value={this.state.currentComment} />
                         </p>
                         <p>
-                            <input type="submit" value="Submit" className="button" />
+                            <input type="submit" value="Add Comment" className="button" />
                         </p>
                     </form>
                 </div>

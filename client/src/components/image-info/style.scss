@@ -84,7 +84,8 @@
       display: flex;
       justify-content: flex-start;
 
-      button {
+      button,
+      .edit-btn {
         padding: 0.5em 1em;
         margin-right: 0.5em;
         font-weight: 600;
@@ -93,14 +94,16 @@
         border-radius: 3px;
         background-color: #55C0EB;
         cursor: pointer;
+        font-weight: 400;
+      }
+
+      .edit-btn {
+        font-size: 0.75em;
+        font-weight: 400;
+        transition: 0s;
       }
     }
   }
-
-  // .edit-form-container {
-  //   opacity: 0;
-  //   transform: translateY(-250px);
-  // }
 
   .comments {
     display: flex;
@@ -177,6 +180,7 @@
   }
 
   button:hover,
+  .edit-btn:hover,
   input.button:hover {
     transform: scale(1.1);
   }

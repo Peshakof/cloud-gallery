@@ -8,6 +8,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import FittedImage from 'react-fitted-image';
 import anime from 'animejs/lib/anime.es.js';
+import {Link} from 'react-scroll';
 import './style.scss';
 
 class ImageInfo extends Component {
@@ -58,7 +59,7 @@ class ImageInfo extends Component {
                         const currentUser = this.state.currentUser._id;
                         const liked = image.usersWhoLikedThis.includes(currentUser);
                         if (liked) {
-                            this.likeBtn.current.style.pointerEvents = 'none';
+                            // this.likeBtn.current.style.pointerEvents = 'none';
                             this.likeBtn.current.textContent = 'Liked';
                             this.likeBtn.current.style.background = 'rgb(59, 58, 58)';
                         }
@@ -200,7 +201,7 @@ class ImageInfo extends Component {
                     {
                         isMine ? <div className="buttons">
                             <button onClick={this.removeImage}>Delete</button>
-                            <button onClick={this.editImage} ref={this.ref}>Edit</button>
+                            <Link onClick={this.editImage} ref={this.ref} to="edit-form" smooth={true} duration={500} className="edit-btn">Edit</Link>
                             <button onClick={this.like} ref={this.likeBtn}>Like</button>
                         </div> :
                             <div className="buttons">
@@ -209,7 +210,7 @@ class ImageInfo extends Component {
                     }
                 </div>
 
-                <div ref={this.editFormRef} style={this.state.style} className="edit-form-container">
+                <div ref={this.editFormRef} style={this.state.style} className="edit-form-container" id="edit-form">
                     <ImageForm history={this.props.history} params={this.props.match.params} />
                 </div>
                 <div ref={this.commentsRef} className="comments">

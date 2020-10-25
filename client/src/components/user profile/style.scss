@@ -1,5 +1,11 @@
+@import '../../styles/mixins.scss';
+
 .user-profile {
-  margin-top: 3em;
+  margin-top: 7rem;
+
+  @include layout( mobile ) {
+    margin-top: 10rem;
+  }
 
   header {
     display: flex;
@@ -33,5 +39,9 @@
         height: auto;
       }
     }
+  }
+
+  .gallery {
+    margin-top: 2rem;
   }
 }

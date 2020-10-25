@@ -2,9 +2,10 @@
 
 .register-form {
 
+
   @include layout(laptop) {
     width: 50%;
-    margin-top: 2.5em;
+    margin: 7rem auto;
   }
 
   @include layout(desktop) {
@@ -13,14 +14,13 @@
 
   @include layout(mobile) {
     width: 60%;
-    margin-top: 4em;
+    margin: 10rem auto;
   }
 
   @include layout(phone) {
     width: 100%;
   }
 
-  margin: 0 auto;
   filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 1));
 
 

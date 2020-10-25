@@ -1,20 +1,19 @@
 @import '../../styles/mixins.scss';
 
 .site-header {
+  position: relative;
 
   .site-nav {
     filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .5));
-    // padding: 1rem 0;
-    // min-height: 100vh;
     position: fixed;
     z-index: 110;
 
     @include layout(laptop) {
       width: 10em;
-      margin-top: 6rem;
+      left: 2rem;
+      top: 10rem;
 
       ul {
-        padding-left: 2rem;
 
         li {
           text-align: left;
@@ -41,33 +40,31 @@
 
     @include layout(desktop) {
       width: 15%;
-
-      ul {
-        padding-left: 2em;
-      }
+      left: 3rem;
+      top: 10rem;
     }
 
     @include layout(mobile) {
       width: 100%;
-      margin-top: 3.1rem;
+      top: 6.5rem;
 
       ul {
 
         li {
           text-align: left;
-          background-color: #55C0EB;
-          border-bottom: 1px solid #fff;
+          background-color: rgb(59, 58, 58);
+          // border-bottom: 1px solid #fff;
           padding-left: 0;
         }
 
         li a {
-          color: #fff;
+          color: #55C0EB;
           padding: 0.5em 1em 0.5em 2rem;
         }
       }
 
       .fa-chevron-down {
-        color: #fff;
+        color: #55C0EB;
         font-size: 0.7em;
       }
 
@@ -77,7 +74,7 @@
     }
 
     @include layout(phone) {
-      margin-top: 5rem;
+      top: 7.5rem;
     }
 
     ul {
@@ -124,7 +121,21 @@
     display: none;
   }
 
- 
+  .fas {
+    z-index: 1000;
+    position: fixed;
+    
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .8));
+
+    span {
+      font-size: 0.7em;
+      padding-left: 0.5em;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   @include layout (laptop) {
     .fas {
@@ -153,25 +164,9 @@
 
   @include layout (phone) {
     .fas {
-      top: 4.7rem;
+      top: 4.4rem;
       left: 2rem;
       font-size: 2.5em;
-    }
-  }
-
-  .fas {
-    position: absolute;
-    z-index: 1000;
-    
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .8));
-
-    span {
-      font-size: 0.7em;
-      padding-left: 0.5em;
-    }
-
-    &:hover {
-      cursor: pointer;
     }
   }
 }
@@ -215,7 +210,6 @@
 
 .title {
   position: fixed;
-  padding: 1rem 0;
   top: 0;
   width: 100%;
   z-index: 100;
@@ -227,6 +221,7 @@
   color: #FAFAFA;
 
   @include layout(laptop) {
+    padding: 0.5rem 0;
 
     h1,
     span {
@@ -236,6 +231,7 @@
     h1 {
       padding-left: 3rem;
       text-align: left;
+      margin: 0;
     }
 
     span {
@@ -249,6 +245,7 @@
   }
 
   @include layout(mobile) {
+    padding: 0.7rem 0;
 
     h1,
     span {
@@ -269,7 +266,7 @@
   }
 
   @include layout(phone) {
-    h1, span {
+    h1{
       margin-bottom: 1rem;
     }   
   }

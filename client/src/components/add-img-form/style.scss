@@ -1,6 +1,11 @@
 @import '../../styles/mixins.scss';
 
 .img-form {
+  min-height: 60vh;
+  display: flex;
+  margin: 7rem auto;
+  flex-wrap: wrap;
+  justify-content: center;
 
   @include layout(laptop) {
     width: 70%;
@@ -22,7 +27,8 @@
 
   @include layout(mobile) {
     width: 80%;
-
+    margin-top: 10rem;
+    
     .img-container,
     .img-props {
       flex-basis: 100%;
@@ -40,12 +46,6 @@
       padding: 1.3em 2em;
     }
   }
-
-  min-height: 60vh;
-  display: flex;
-  margin: 4em auto;
-  flex-wrap: wrap;
-  justify-content: center;
 
   .img-container {
     border: 1px dashed black;

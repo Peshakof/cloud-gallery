@@ -47,16 +47,18 @@
       position: relative;
       break-inside: avoid;
       margin-bottom: 1em ;
-      transition: ease-in 0.1s;
-
-      &:hover {
+      border-radius: 4px;
+      padding: 0.3em;
+      
+      &:hover .lazyload-wrapper {
+        transition: ease-in 0.1s;
         transform: scale(1.05);
       }
-
+      
       .lazyload-wrapper {
         position: relative;
       }
-
+      
       .lazyload-wrapper a {
         position: absolute;
         top: 0;
@@ -69,7 +71,6 @@
         width: 100%;
         height: auto;
         display: block;
-        filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, .8));
         border-radius: 4px;
       }
 

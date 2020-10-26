@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import imageService from '../../services/image-service';
 import FontAwesome from 'react-fontawesome';
 import ImageContainer from '../image-container';
+import {Link} from 'react-scroll';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import './style.scss';
 
@@ -17,7 +17,8 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <section className="gallery">
+    <section className="gallery" id="gallery">
+      <div id="top"></div>
       <ul className="masonry">
         <Fragment>
           {
@@ -29,7 +30,7 @@ const Dashboard = () => {
           }
         </Fragment>
       </ul>
-      <Link id="toTop" to="#"><FontAwesome className="fas fa-chevron-up"></FontAwesome></Link>
+      <Link id="toTop" to="top" smooth={true} duration={1000}><FontAwesome className="fas fa-chevron-up"></FontAwesome></Link>
     </section>
   )
 

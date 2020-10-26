@@ -9,6 +9,12 @@
   @include layout( mobile ) {
     margin-top: 10rem;
   }
+
+  #top {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   
   ul.masonry {
     width: 100%;

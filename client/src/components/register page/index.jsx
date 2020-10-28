@@ -73,7 +73,7 @@ const RegisterPage = (props) => {
             <img src={image} alt="" />
           )}
         <p>
-          <input className="signup-btn" type="submit" value="Signup" />
+          <input className="signup-btn" type="submit" value="Register" />
         </p>
       </form>
     </div>

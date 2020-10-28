@@ -22,47 +22,47 @@ const Carousel = () => {
 
   const images = [
     {
-      category: 'pet',
+      category: 'Pets',
       link: 'dashboard/pet',
       src: "https://images.unsplash.com/photo-1512873897628-eea05c840147?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
     },
     {
-      category: 'places',
+      category: 'Places',
       link: 'dashboard/places',
       src: "https://images.unsplash.com/photo-1584011958148-eeba80e718e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
     },
     {
-      category: 'cars',
+      category: 'Cars',
       link: 'dashboard/cars',
       src: "https://images.unsplash.com/photo-1514867644123-6385d58d3cd4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
     },
     {
-      category: 'landscapes',
+      category: 'Landscapes',
       link: 'dashboard/landscape',
       src: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
     },
     {
-      category: 'houses',
+      category: 'Houses',
       link: 'dashboard/houses',
       src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
     },
     {
-      category: 'sport',
+      category: 'Sport',
       link: 'dashboard/sport',
       src: "https://images.unsplash.com/photo-1519119012096-c145def61801?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
     },
     {
-      category: 'people',
+      category: 'People',
       link: 'dashboard/people',
       src: "https://images.unsplash.com/photo-1504703395950-b89145a5425b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
     },
     {
-      category: 'nature',
+      category: 'Nature',
       link: 'dashboard/nature',
       src: "https://images.unsplash.com/photo-1588392382834-a891154bca4d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
     },
     {
-      category: 'technology',
+      category: 'Technology',
       link: 'dashboard/high-tech',
       src: "https://images.unsplash.com/photo-1561883088-039e53143d73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
     }
@@ -80,7 +80,7 @@ const Carousel = () => {
   return (
     <div className="carousel">
       <header>
-        <h2>choose a topic</h2>
+        <h2>Choose a topic</h2>
       </header>
       <Gallery
         className="carousel-content"

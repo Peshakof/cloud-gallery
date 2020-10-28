@@ -194,10 +194,10 @@ class ImageInfo extends Component {
 
                 </div>
                 <div className="image-stats">
-                    <p className="image-title">title: {image.title}</p>
-                    <p className="image-uploader">uploader: {uploader}</p>
-                    <p className="image-category">category: {image.category}</p>
-                    <p className="image-likes">likes: {likes}</p>
+                    <p className="image-title">Title: {image.title}</p>
+                    <p className="image-uploader">Uploader: {uploader}</p>
+                    <p className="image-category">Category: {image.category}</p>
+                    <p className="image-likes">Likes: {likes}</p>
 
                     {
                         currentUser ?

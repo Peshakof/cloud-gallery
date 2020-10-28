@@ -49,7 +49,7 @@ const LoginPage = (props) => {
           <input className="form-input" type="password" name="password" placeholder="password" {...bindPassword}/>
         </p>
         <p>
-          <input className="signup-btn" type="submit" value="Signin" />
+          <input className="signup-btn" type="submit" value="Login" />
         </p>
       </form>
     </div>

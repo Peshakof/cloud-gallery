@@ -72,8 +72,8 @@ const Navigation = ({ toggleTheme, appRef }) => {
   return (
     <div className="nav-wrap" ref={navRef}>
       <section className="title">
-        <h1>cloud gallery</h1>
-        <span>toggle theme<button onClick={toggleTheme} type="button"></button></span>
+        <h1>Cloud gallery</h1>
+        <span>Toggle theme<button onClick={toggleTheme} type="button"></button></span>
       </section>
       <input type="checkbox" id="toggle-nav" className="toggle-nav" onClick={blur} ref={navBtnRef}></input>
       <header className="site-header">
@@ -83,23 +83,23 @@ const Navigation = ({ toggleTheme, appRef }) => {
         </label>
         <nav className="site-nav">
           <ul>
-            <li><NavLink to="/" className="link">home</NavLink></li>
+            <li><NavLink to="/" className="link">Home</NavLink></li>
             <li>
-              <NavLink onClick={animate} to="#" className="link">categories
+              <NavLink onClick={animate} to="#" className="link">Categories
               <FontAwesome name="arrow-down" className="fas fa-chevron-down"></FontAwesome>
               </NavLink>
               <nav className="inner-nav" ref={innerNavRef}>
                 <ul>
-                  <li><NavLink to="/dashboard" className="link inner" onClick={closeMenu}>all</NavLink></li>
-                  <li><NavLink to="/dashboard/pet" className="link inner" onClick={closeMenu}>pet</NavLink></li>
-                  <li><NavLink to="/dashboard/sport" className="link inner" onClick={closeMenu}>sport</NavLink></li>
-                  <li><NavLink to="/dashboard/people" className="link inner" onClick={closeMenu}>people</NavLink></li>
-                  <li><NavLink to="/dashboard/nature" className="link inner" onClick={closeMenu}>nature</NavLink></li>
-                  <li><NavLink to="/dashboard/houses" className="link inner" onClick={closeMenu}>houses</NavLink></li>
-                  <li><NavLink to="/dashboard/places" className="link inner" onClick={closeMenu}>places</NavLink></li>
-                  <li><NavLink to="/dashboard/landscape" className="link inner" onClick={closeMenu}>landscapes</NavLink></li>
-                  <li><NavLink to="/dashboard/high-tech" className="link inner" onClick={closeMenu}>high-tech</NavLink></li>
-                  <li><NavLink to="/dashboard/cars" className="link inner" onClick={closeMenu}>cars</NavLink></li>
+                  <li><NavLink to="/dashboard" className="link inner" onClick={closeMenu}>All Categories</NavLink></li>
+                  <li><NavLink to="/dashboard/pet" className="link inner" onClick={closeMenu}>Pets</NavLink></li>
+                  <li><NavLink to="/dashboard/sport" className="link inner" onClick={closeMenu}>Sport</NavLink></li>
+                  <li><NavLink to="/dashboard/people" className="link inner" onClick={closeMenu}>People</NavLink></li>
+                  <li><NavLink to="/dashboard/nature" className="link inner" onClick={closeMenu}>Nature</NavLink></li>
+                  <li><NavLink to="/dashboard/houses" className="link inner" onClick={closeMenu}>Houses</NavLink></li>
+                  <li><NavLink to="/dashboard/places" className="link inner" onClick={closeMenu}>Places</NavLink></li>
+                  <li><NavLink to="/dashboard/landscape" className="link inner" onClick={closeMenu}>Landscapes</NavLink></li>
+                  <li><NavLink to="/dashboard/high-tech" className="link inner" onClick={closeMenu}>High-tech</NavLink></li>
+                  <li><NavLink to="/dashboard/cars" className="link inner" onClick={closeMenu}>Cars</NavLink></li>
                 </ul>
               </nav>
             </li>
@@ -107,13 +107,13 @@ const Navigation = ({ toggleTheme, appRef }) => {
             {
               isLogged ?
                 <Fragment>
-                  <li><NavLink to="/user-profile" className="link">user profile</NavLink></li>
-                  <li><NavLink to="/upload-image" className="link">upload image</NavLink></li>
-                  <li><NavLink to="/logout" className="link">logout</NavLink></li>
+                  <li><NavLink to="/user-profile" className="link">User profile</NavLink></li>
+                  <li><NavLink to="/upload-image" className="link">Upload image</NavLink></li>
+                  <li><NavLink to="/logout" className="link">Logout</NavLink></li>
                 </Fragment> :
                 <Fragment>
-                  <li><NavLink to="/signup" className="link">signup</NavLink></li>
-                  <li><NavLink to="/signin" className="link">login</NavLink></li>
+                  <li><NavLink to="/signup" className="link">Sign up</NavLink></li>
+                  <li><NavLink to="/signin" className="link">Log in</NavLink></li>
                 </Fragment>
             }
           </ul>

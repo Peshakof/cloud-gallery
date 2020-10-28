@@ -8,7 +8,7 @@ const config = {
   },
   production: {
     port: process.env.PORT || 8000,
-    dbURL: 'mongodb+srv://Peshakof:honda1987@peshakof2020.oglek.mongodb.net/cloud-gallery?retryWrites=true&w=majority',
+    dbURL: 'mongodb+srv://Peshakof:CJUKceRtCV3PnjxP@peshakof2020.oglek.mongodb.net/cloud-gallery?retryWrites=true&w=majority',
     authCookieName: 'x-auth-token'
   }
 }

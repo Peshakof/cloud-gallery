@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import FittedImage from 'react-fitted-image';
 import anime from 'animejs/lib/anime.es.js';
-import {Link} from 'react-scroll';
+import { Link } from 'react-scroll';
 import './style.scss';
 
 class ImageInfo extends Component {
@@ -39,13 +39,13 @@ class ImageInfo extends Component {
         const imageId = this.props.match.params.id
         const image = imageService.getCurrentImage(imageId);
         const comments = commentsService.getAllComments(imageId);
-        
+
         axios.all([image, comments]).then(
             axios.spread((...results) => {
-                this.setState({ 
+                this.setState({
                     image: results[0].data,
                     commentsArr: results[1].data,
-                    isLoading: true 
+                    isLoading: true
                 })
                 const id = this.state.image.user
 
@@ -65,7 +65,7 @@ class ImageInfo extends Component {
                         }
                     })
             })
-            
+
         )
     }
 
@@ -86,22 +86,22 @@ class ImageInfo extends Component {
             anime.timeline({
                 easing: 'linear',
                 duration: '300'
-              })
-              .add({
-                targets: '.edit-form-container',
-                opacity: [0,1],
-                delay:100
-              })
+            })
+                .add({
+                    targets: '.edit-form-container',
+                    opacity: [0, 1],
+                    delay: 100
+                })
         } else {
             anime.timeline({
                 easing: 'linear',
                 duration: '200'
             })
-            .add({
-                targets: '.edit-form-container',
-                opacity: [1,0],
-                delay:100
-            })
+                .add({
+                    targets: '.edit-form-container',
+                    opacity: [1, 0],
+                    delay: 100
+                })
             this.editFormRef.current.style.display = 'none'
         }
     }
@@ -178,37 +178,37 @@ class ImageInfo extends Component {
                 <div className="image-box">
                     {
                         this.state.isLoading ? (<FittedImage
-                        fit="contain"
-                        loader={<div>Loading</div>}
-                        onLoad={(...args) => console.log(...args)}
-                        onError={(...args) => console.log(...args)}
-                        src={image.imageUrl}
-                    />) : (<FittedImage
-                        fit="contain"
-                        loader={<div>Loading</div>}
-                        onLoad={(...args) => console.log(...args)}
-                        onError={(...args) => console.log(...args)}
-                        src="https://i.pinimg.com/originals/dc/aa/7a/dcaa7a90d62a19169bfa46c1c6625696.gif"
-                    />)
+                            fit="contain"
+                            loader={<div>Loading</div>}
+                            onLoad={(...args) => console.log(...args)}
+                            onError={(...args) => console.log(...args)}
+                            src={image.imageUrl}
+                        />) : (<FittedImage
+                            fit="contain"
+                            loader={<div>Loading</div>}
+                            onLoad={(...args) => console.log(...args)}
+                            onError={(...args) => console.log(...args)}
+                            src="https://i.pinimg.com/originals/dc/aa/7a/dcaa7a90d62a19169bfa46c1c6625696.gif"
+                        />)
                     }
-                    
+
                 </div>
                 <div className="image-stats">
                     <p className="image-title">title: {image.title}</p>
                     <p className="image-uploader">uploader: {uploader}</p>
                     <p className="image-category">category: {image.category}</p>
                     <p className="image-likes">likes: {likes}</p>
-                    
+
                     {
                         currentUser ?
-                        (isMine ? <div className="buttons">
-                            <button onClick={this.removeImage}>Delete</button>
-                            <Link onClick={this.editImage} ref={this.ref} to="edit-form" smooth={true} duration={500} className="edit-btn">Edit</Link>
-                            <button onClick={this.like} ref={this.likeBtn}>Like</button>
-                        </div> :
-                            <div className="buttons">
+                            (isMine ? <div className="buttons">
+                                <button onClick={this.removeImage}>Delete</button>
+                                <Link onClick={this.editImage} ref={this.ref} to="edit-form" smooth={true} duration={500} className="edit-btn">Edit</Link>
                                 <button onClick={this.like} ref={this.likeBtn}>Like</button>
-                            </div>) : null
+                            </div> :
+                                <div className="buttons">
+                                    <button onClick={this.like} ref={this.likeBtn}>Like</button>
+                                </div>) : null
                     }
                 </div>
 
@@ -226,9 +226,14 @@ class ImageInfo extends Component {
                                 return <Comment key={comment._id} comment={comment} />
                             })
                         }
-                        <p className="comment-input">
-                            <input ref={this.inputRef} type="text" name="comment" onChange={this.handleChange} value={this.state.currentComment} />
-                        </p>
+                        {
+                            currentUser ? (
+                                <p className="comment-input">
+                                    <input ref={this.inputRef} type="text" name="comment" onChange={this.handleChange} value={this.state.currentComment} />
+                                </p>
+                            ) : null
+                        }
+
                         <p>
                             <input type="submit" value="Add Comment" className="button" />
                         </p>

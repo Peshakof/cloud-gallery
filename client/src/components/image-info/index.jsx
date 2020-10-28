@@ -228,15 +228,17 @@ class ImageInfo extends Component {
                         }
                         {
                             currentUser ? (
-                                <p className="comment-input">
-                                    <input ref={this.inputRef} type="text" name="comment" onChange={this.handleChange} value={this.state.currentComment} />
-                                </p>
-                            ) : null
+                                <React.Fragment>
+                                    <p className="comment-input">
+                                        <input ref={this.inputRef} type="text" name="comment" onChange={this.handleChange} value={this.state.currentComment} />
+                                    </p>
+                                    <p>
+                                        <input type="submit" value="Add Comment" className="button" />
+                                    </p>
+                                </React.Fragment>) : null
                         }
 
-                        <p>
-                            <input type="submit" value="Add Comment" className="button" />
-                        </p>
+
                     </form>
                 </div>
             </section>

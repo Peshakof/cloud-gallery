@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const host = 'http://localhost:8000/api';
+// const host = 'http://localhost:8000/api';
+const host = 'https://mern-cloud-gallery.herokuapp.com/api';
 
 const commentsRequester = {
   postComment: (comment) => {

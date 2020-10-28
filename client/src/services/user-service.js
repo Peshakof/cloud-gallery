@@ -3,7 +3,8 @@ import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-const host = 'http://localhost:8000/api';
+// const host = 'http://localhost:8000/api';
+const host = 'https://mern-cloud-gallery.herokuapp.com/api';
 
 const userRequester = {
   register: (username,password,avatar) => {

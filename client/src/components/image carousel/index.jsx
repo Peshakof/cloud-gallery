@@ -38,7 +38,7 @@ const Carousel = () => {
     },
     {
       category: 'landscapes',
-      link: 'dashboard/landscapes',
+      link: 'dashboard/landscape',
       src: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
     },
     {
@@ -92,8 +92,8 @@ const Carousel = () => {
         }}
       >
         {images.map(image => (
-          <React.Fragment >
-            <GalleryImage objectFit="contain" key={image.src} src={image.src} className="gallery-image"/>
+          <React.Fragment key={image.src}>
+            <GalleryImage objectFit="contain"  src={image.src} className="gallery-image"/>
             <Link to={image.link} onClick={x} className="topic-link">{image.category}</Link>
           </React.Fragment>
         ))}

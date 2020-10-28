@@ -62,15 +62,15 @@ function App(props) {
                 {/* <ProtectedRoute path="/image-info/:id" exact component={ImageInfo} /> */}
                 <Route path="/image-info/:id" exact component={ImageInfo}  />
                 <Route path="/dashboard" exact component={Dashboard} />
-                <Route path="/dashboard/sport" exact component={Category} />
-                <Route path="/dashboard/pet" exact component={Category} />
-                <Route path="/dashboard/cars" exact component={Category} />
-                <Route path="/dashboard/people" exact component={Category} />
-                <Route path="/dashboard/landscapes" exact component={Category} />
-                <Route path="/dashboard/houses" exact component={Category} />
-                <Route path="/dashboard/nature" exact component={Category} />
-                <Route path="/dashboard/high-tech" exact component={Category} />
-                <Route path="/dashboard/places" exact component={Category} />
+                <Route path="/dashboard/sport" exact render={() => (<Category category={"sport"} />)} />
+                <Route path="/dashboard/pet" exact render={() => (<Category category={"pet"} />)} />
+                <Route path="/dashboard/cars" exact render={() => (<Category category={"cars"} />)} />
+                <Route path="/dashboard/people" render={() => (<Category category={"people"} />)} />
+                <Route path="/dashboard/landscape" render={() => (<Category category={"landscape"} />)} />
+                <Route path="/dashboard/houses" exact render={() => (<Category category={"houses"} />)} />
+                <Route path="/dashboard/nature" exact render={() => (<Category category={"nature"} />)} />
+                <Route path="/dashboard/high-tech" exact render={() => (<Category category={"high-tech"} />)} />
+                <Route path="/dashboard/places" exact render={() => (<Category category={"places"} />)} />
                 <Route path="/signup" exact component={RegisterPage}/>
                 <Route path="/signin" exact component={LoginPage}/>
                 <Route path="/logout" exact component={Logout}/>

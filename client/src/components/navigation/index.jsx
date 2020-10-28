@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState, useContext, useRef } from 'react';
 import { UserContext } from '../contexts/user-context';
 import anime from 'animejs/lib/anime.es.js';
-import Cookies from 'js-cookie';
 import { NavLink } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
@@ -66,6 +65,10 @@ const Navigation = ({ toggleTheme, appRef }) => {
     }
   }
 
+  const closeMenu = () => {
+    navBtnRef.current.checked = false;
+  }
+
   return (
     <div className="nav-wrap" ref={navRef}>
       <section className="title">
@@ -75,28 +78,28 @@ const Navigation = ({ toggleTheme, appRef }) => {
       <input type="checkbox" id="toggle-nav" className="toggle-nav" onClick={blur} ref={navBtnRef}></input>
       <header className="site-header">
         <label htmlFor="toggle-nav" className="toggle-nav-btn">
-          <FontAwesome className="fas fa-bars" />
-          <FontAwesome className="fas fa-times" />
+          <FontAwesome name="hamburger" className="fas fa-bars" />
+          <FontAwesome name="x" className="fas fa-times" />
         </label>
         <nav className="site-nav">
           <ul>
             <li><NavLink to="/" className="link">home</NavLink></li>
             <li>
               <NavLink onClick={animate} to="#" className="link">categories
-              <FontAwesome className="fas fa-chevron-down"></FontAwesome>
+              <FontAwesome name="arrow-down" className="fas fa-chevron-down"></FontAwesome>
               </NavLink>
               <nav className="inner-nav" ref={innerNavRef}>
                 <ul>
-                  <li><NavLink to="/dashboard" className="link inner">all</NavLink></li>
-                  <li><NavLink to="/dashboard/pet" className="link inner">pet</NavLink></li>
-                  <li><NavLink to="/dashboard/sport" className="link inner">sport</NavLink></li>
-                  <li><NavLink to="/dashboard/people" className="link inner">people</NavLink></li>
-                  <li><NavLink to="/dashboard/nature" className="link inner">nature</NavLink></li>
-                  <li><NavLink to="/dashboard/houses" className="link inner">houses</NavLink></li>
-                  <li><NavLink to="/dashboard/places" className="link inner">places</NavLink></li>
-                  <li><NavLink to="/dashboard/landscapes" className="link inner">landscapes</NavLink></li>
-                  <li><NavLink to="/dashboard/hign-tech" className="link inner">high-tech</NavLink></li>
-                  <li><NavLink to="/dashboard/cars" className="link inner">cars</NavLink></li>
+                  <li><NavLink to="/dashboard" className="link inner" onClick={closeMenu}>all</NavLink></li>
+                  <li><NavLink to="/dashboard/pet" className="link inner" onClick={closeMenu}>pet</NavLink></li>
+                  <li><NavLink to="/dashboard/sport" className="link inner" onClick={closeMenu}>sport</NavLink></li>
+                  <li><NavLink to="/dashboard/people" className="link inner" onClick={closeMenu}>people</NavLink></li>
+                  <li><NavLink to="/dashboard/nature" className="link inner" onClick={closeMenu}>nature</NavLink></li>
+                  <li><NavLink to="/dashboard/houses" className="link inner" onClick={closeMenu}>houses</NavLink></li>
+                  <li><NavLink to="/dashboard/places" className="link inner" onClick={closeMenu}>places</NavLink></li>
+                  <li><NavLink to="/dashboard/landscape" className="link inner" onClick={closeMenu}>landscapes</NavLink></li>
+                  <li><NavLink to="/dashboard/high-tech" className="link inner" onClick={closeMenu}>high-tech</NavLink></li>
+                  <li><NavLink to="/dashboard/cars" className="link inner" onClick={closeMenu}>cars</NavLink></li>
                 </ul>
               </nav>
             </li>

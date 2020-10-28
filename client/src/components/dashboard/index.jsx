@@ -24,13 +24,13 @@ const Dashboard = () => {
           {
             images.map(image => {
               return (
-                <ImageContainer image={image} />
+                <ImageContainer key={image._id} image={image} />
               )
             })
           }
         </Fragment>
       </ul>
-      <Link id="toTop" to="top" smooth={true} duration={1000}><FontAwesome className="fas fa-chevron-up"></FontAwesome></Link>
+      <Link id="toTop" to="top" smooth={true} duration={1000}><FontAwesome name="arrow-up" className="fas fa-chevron-up"></FontAwesome></Link>
     </section>
   )
 

@@ -172,7 +172,7 @@ class ImageInfo extends Component {
         const uploader = this.state.uploader.username;
         const likes = this.state.image.likes;
 
-        console.log(this.state.isLoading)
+        console.log(currentUser)
         return (
             <section className="image-info">
                 <div className="image-box">
@@ -198,15 +198,17 @@ class ImageInfo extends Component {
                     <p className="image-uploader">uploader: {uploader}</p>
                     <p className="image-category">category: {image.category}</p>
                     <p className="image-likes">likes: {likes}</p>
+                    
                     {
-                        isMine ? <div className="buttons">
+                        currentUser ?
+                        (isMine ? <div className="buttons">
                             <button onClick={this.removeImage}>Delete</button>
                             <Link onClick={this.editImage} ref={this.ref} to="edit-form" smooth={true} duration={500} className="edit-btn">Edit</Link>
                             <button onClick={this.like} ref={this.likeBtn}>Like</button>
                         </div> :
                             <div className="buttons">
                                 <button onClick={this.like} ref={this.likeBtn}>Like</button>
-                            </div>
+                            </div>) : null
                     }
                 </div>
 

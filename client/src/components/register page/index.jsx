@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import registerValidator from '../../validations/register-validator';
 import userService from '../../services/user-service';
+import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
+import { UserContext } from '../contexts/user-context';
 
+import 'react-toastify/dist/ReactToastify.css';
 import './style.scss';
 
 const RegisterPage = (props) => {
@@ -11,6 +15,7 @@ const RegisterPage = (props) => {
   const [repeatPass, setRePassword] = useState('');
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [auth, setAuth] = useContext(UserContext);
 
   const onChangeHandler = e => {
     const files = e.target.files[0];
@@ -20,11 +25,11 @@ const RegisterPage = (props) => {
     setLoading(true);
 
     axios.post('https://api.cloudinary.com/v1_1/donaw6igw/image/upload', formData)
-        .then((res) => setImage(res.data.secure_url))
-        .then(() => {
-          setLoading(false)
-        })
-        .catch((err) => console.log(err));
+      .then((res) => setImage(res.data.secure_url))
+      .then(() => {
+        setLoading(false)
+      })
+      .catch((err) => console.log(err));
   }
 
   const updateUsername = (e) => {
@@ -41,10 +46,19 @@ const RegisterPage = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (registerValidator(username, password, repeatPass)) {
-      userService.register(username, password, image);
-      props.history.push('/signin');
+      userService.register(username, password, image)
+      .then((res)=>{
+        console.log(res.data)
+        const {token, user} = res.data;
+          Cookies.set('token', token);
+          Cookies.set('user', user);
+          toast.success('You are logged in');
+          const cookie = Cookies.get('token') !== undefined;
+          setAuth(cookie)
+          props.history.push('/');
+      })
     }
   }
 
@@ -55,7 +69,7 @@ const RegisterPage = (props) => {
           <h3>Fill the form to signup</h3>
         </header>
         <p>
-          <input className="form-input" type="text" name="username" placeholder="username" value={username} onChange={updateUsername}/>
+          <input className="form-input" type="text" name="username" placeholder="username" value={username} onChange={updateUsername} />
         </p>
         <p>
           <input className="form-input" type="password" name="password" placeholder="password" value={password} onChange={updatePassword} />

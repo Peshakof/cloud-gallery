@@ -8,19 +8,13 @@ const host = 'https://mern-cloud-gallery.herokuapp.com/api';
 
 const userRequester = {
   register: (username,password,avatar) => {
-    axios
+    return axios
       .post(`${host}/user/register`, {
         username,
         password,
         avatar
         // repeatPass
       })
-      .then(() => {
-        toast.success('Successfully registered');
-      })
-      .catch(err => {
-        toast.error(err);
-      });
   },
 
   login: (username, password) => {

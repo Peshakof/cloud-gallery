@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import Navigation from './components/navigation';
 import Carousel from './components/image carousel';
 import ImgForm from './components/add-img-form';

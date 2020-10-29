@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Gallery, GalleryImage } from "react-gesture-gallery";
 import { Link } from 'react-router-dom';
 import imageService from '../../services/image-service';
+import FontAwesome from 'react-fontawesome';
 import './style.scss'
 
 const Carousel = () => {
@@ -94,7 +95,9 @@ const Carousel = () => {
         {images.map(image => (
           <React.Fragment key={image.src}>
             <GalleryImage objectFit="contain"  src={image.src} className="gallery-image"/>
-            <Link to={image.link} onClick={x} className="topic-link">{image.category}</Link>
+            <Link to={image.link} onClick={x} className="topic-link">
+              {image.category} <FontAwesome name="pointer" className="fas fa-mouse-pointer"/>
+            </Link>
           </React.Fragment>
         ))}
       </Gallery>

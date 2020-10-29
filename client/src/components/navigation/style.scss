@@ -4,7 +4,6 @@
   position: relative;
 
   .site-nav {
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .5));
     position: fixed;
     z-index: 110;
 
@@ -17,15 +16,15 @@
 
         li {
           text-align: left;
-
-          &:hover {
-            border-left: 3px solid #55C0EB;
-          }
         }
         
         li a {
           padding: 0.3em 0.6em 0.3em 0;
         }
+      }
+
+      .main-link:hover {
+        transform: scale(1.02);
       }
 
       .fa-chevron-down {
@@ -35,6 +34,11 @@
       
       .inner {
         padding-left: 0.5rem;
+        border-left: 2px solid transparent;
+
+        &:hover {
+          border-left: 2px solid #55C0EB;
+        }
       }
     }
 
@@ -46,14 +50,13 @@
 
     @include layout(mobile) {
       width: 100%;
-      top: 6.5rem;
+      top: 5.8rem;
 
       ul {
 
         li {
           text-align: left;
           background-color: rgb(59, 58, 58);
-          // border-bottom: 1px solid #fff;
           padding-left: 0;
         }
 
@@ -74,7 +77,7 @@
     }
 
     @include layout(phone) {
-      top: 7.5rem;
+      top: 6.8rem;
     }
 
     ul {
@@ -89,7 +92,7 @@
     }
 
     .fa-chevron-down {
-      padding-left: 0.5em;
+      padding-left: 0.2em;
     }
 
     .inner-nav {
@@ -109,7 +112,7 @@
     .link {
       display: block;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 400;
     }
   }
 }
@@ -156,7 +159,7 @@
   @include layout (mobile) {
     .fas {
       color: #fff;
-      top: 3.7rem;
+      top: 2.9rem;
       left: 2rem;
       font-size: 2.5em;
     }
@@ -164,7 +167,7 @@
 
   @include layout (phone) {
     .fas {
-      top: 4.4rem;
+      top: 3.8rem;
       left: 2rem;
       font-size: 2.5em;
     }
@@ -223,13 +226,14 @@
   @include layout(laptop) {
     padding: 0.5rem 0;
 
-    h1,
+    a,
     span {
       flex-basis: 33%;
     }
 
-    h1 {
+    a {
       padding-left: 3rem;
+      font-size: 1.8em;
       text-align: left;
       margin: 0;
     }
@@ -247,13 +251,13 @@
   @include layout(mobile) {
     padding: 0.7rem 0;
 
-    h1,
+    a,
     span {
       flex-basis: 100%;
     }
 
-    h1 {
-      padding-left: 1rem;
+    a {
+      font-size: 1.8em;
       text-align: center;
       margin: 0;
     }
@@ -266,22 +270,21 @@
   }
 
   @include layout(phone) {
-    h1{
-      margin-bottom: 1rem;
+    a {
+      margin-bottom: 0.5rem;
+      font-size: 2em;
     }   
   }
 
-  // h1, span {
-  //   border: red 1px solid;
-  // }
-
-  h1 {
+  a {
     font-weight: 700;
+    font-family: 'Varela Round';
     color: #55C0EB;
+    text-decoration: none;
   }
 
   span {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: 400;
     text-align: left;
     // position: absolute;

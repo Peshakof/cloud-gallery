@@ -72,7 +72,8 @@ const Navigation = ({ toggleTheme, appRef }) => {
   return (
     <div className="nav-wrap" ref={navRef}>
       <section className="title">
-        <h1>Cloud gallery</h1>
+        {/* <h1>Cloud gallery</h1> */}
+        <NavLink to="/" >Cloud gallery</NavLink>
         <span>Toggle theme<button onClick={toggleTheme} type="button"></button></span>
       </section>
       <input type="checkbox" id="toggle-nav" className="toggle-nav" onClick={blur} ref={navBtnRef}></input>
@@ -83,9 +84,8 @@ const Navigation = ({ toggleTheme, appRef }) => {
         </label>
         <nav className="site-nav">
           <ul>
-            <li><NavLink to="/" className="link">Home</NavLink></li>
             <li>
-              <NavLink onClick={animate} to="#" className="link">Categories
+              <NavLink onClick={animate} to="#" className="link main-link">Categories
               <FontAwesome name="arrow-down" className="fas fa-chevron-down"></FontAwesome>
               </NavLink>
               <nav className="inner-nav" ref={innerNavRef}>
@@ -107,13 +107,13 @@ const Navigation = ({ toggleTheme, appRef }) => {
             {
               isLogged ?
                 <Fragment>
-                  <li><NavLink to="/user-profile" className="link">User profile</NavLink></li>
-                  <li><NavLink to="/upload-image" className="link">Upload image</NavLink></li>
-                  <li><NavLink to="/logout" className="link">Logout</NavLink></li>
+                  <li><NavLink to="/user-profile" className="link main-link">User profile</NavLink></li>
+                  <li><NavLink to="/upload-image" className="link main-link">Upload image</NavLink></li>
+                  <li><NavLink to="/logout" className="link main-link">Logout</NavLink></li>
                 </Fragment> :
                 <Fragment>
-                  <li><NavLink to="/signup" className="link">Sign up</NavLink></li>
-                  <li><NavLink to="/signin" className="link">Log in</NavLink></li>
+                  <li><NavLink to="/signup" className="link main-link">Register</NavLink></li>
+                  <li><NavLink to="/signin" className="link main-link">Log in</NavLink></li>
                 </Fragment>
             }
           </ul>

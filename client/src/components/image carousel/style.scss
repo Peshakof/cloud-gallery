@@ -5,8 +5,11 @@
   height: 60vh;
   margin: 0 auto;
   margin-top: 7rem;
-  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 1));
   position: relative;
+
+  header {
+    font-size: 0.8em;
+  }
 
   @include layout(mobile) {
     margin-top: 10rem;
@@ -30,10 +33,27 @@
       flex-basis: 10%;
       color: rgb(228, 222, 222);
       font-size: 1.2em;
+
+      .fas {
+        color: #5DC2EB;
+        font-size: 0.4em;
+        padding-left: 0.2em;
+        animation: pulse 0.4s infinite alternate ease-in;
+      }
     }
 
     .gallery-image {
       flex-basis: 100%;
     }
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.1);
   }
 }

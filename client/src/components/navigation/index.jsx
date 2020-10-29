@@ -67,6 +67,8 @@ const Navigation = ({ toggleTheme, appRef }) => {
 
   const closeMenu = () => {
     navBtnRef.current.checked = false;
+    appRef.current.style.filter = 'none';
+    innerNavRef.current.style.display = 'none';
   }
 
   return (
@@ -107,13 +109,13 @@ const Navigation = ({ toggleTheme, appRef }) => {
             {
               isLogged ?
                 <Fragment>
-                  <li><NavLink to="/user-profile" className="link main-link">User profile</NavLink></li>
-                  <li><NavLink to="/upload-image" className="link main-link">Upload image</NavLink></li>
-                  <li><NavLink to="/logout" className="link main-link">Logout</NavLink></li>
+                  <li><NavLink to="/user-profile" className="link main-link" onClick={closeMenu}>User profile</NavLink></li>
+                  <li><NavLink to="/upload-image" className="link main-link" onClick={closeMenu}>Upload image</NavLink></li>
+                  <li><NavLink to="/logout" className="link main-link" onClick={closeMenu}>Logout</NavLink></li>
                 </Fragment> :
                 <Fragment>
-                  <li><NavLink to="/signup" className="link main-link">Register</NavLink></li>
-                  <li><NavLink to="/signin" className="link main-link">Log in</NavLink></li>
+                  <li><NavLink to="/signup" className="link main-link" onClick={closeMenu}>Register</NavLink></li>
+                  <li><NavLink to="/signin" className="link main-link" onClick={closeMenu}>Log in</NavLink></li>
                 </Fragment>
             }
           </ul>

@@ -1,25 +1,32 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, Fragment, useRef } from 'react';
 import { Gallery, GalleryImage } from "react-gesture-gallery";
 import { Link } from 'react-router-dom';
+import { Link as Arrow } from 'react-scroll';
 import imageService from '../../services/image-service';
 import FontAwesome from 'react-fontawesome';
+import ImageContainer from '../image-container';
+import axios from 'axios';
 import './style.scss'
 
 const Carousel = () => {
 
   const [index, setIndex] = useState(0);
-  const [imgArr, setImgArr] = useState({}); 
+  const [imgArr, setImgArr] = useState({});
+  const [searched, setSearched] = useState('');
+  const [response, setResponse] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const galleryRef = useRef();
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      if (index === 8) {
-        setIndex(0);
-      } else {
-        setIndex(prev => prev + 1);
-      }
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [index]);
+    // const timer = setInterval(() => {
+    //   if (index === 8) {
+    //     setIndex(0);
+    //   } else {
+    //     setIndex(prev => prev + 1);
+    //   }
+    // }, 3000);
+    // return () => clearInterval(timer);
+  }, [response]);
 
   const images = [
     {
@@ -67,7 +74,7 @@ const Carousel = () => {
       link: 'dashboard/high-tech',
       src: "https://images.unsplash.com/photo-1561883088-039e53143d73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"
     }
-    
+
   ];
 
   const x = () => (
@@ -78,30 +85,70 @@ const Carousel = () => {
       })
   );
 
+  const search = (e) => {
+    e.preventDefault();
+    axios.get(`https://api.unsplash.com/search/photos?per_page=50&query=${searched}&client_id=GOUxunGBMZ12OehgeMQvurmOYPbR9xhQHt00qtO1JJY`)
+      .then(res => {
+        setResponse(res.data.results)
+        setIsLoading(true)
+        window.scrollTo(0, galleryRef.current.offsetTop)
+      })
+  }
+
+  const handleChange = (e) => {
+    setSearched(e.target.value);
+  }
+
   return (
-    <div className="carousel">
-      <header>
-        <h2>Choose a topic</h2>
-      </header>
-      <Gallery
-        className="carousel-content"
-        index={index}
-        enableControls={true}
-        enableIndicators={true}
-        onRequestChange={i => {
-          setIndex(i);
-        }}
-      >
-        {images.map(image => (
-          <React.Fragment key={image.src}>
-            <GalleryImage objectFit="contain"  src={image.src} className="gallery-image"/>
-            <Link to={image.link} onClick={x} className="topic-link">
-              {image.category} <FontAwesome name="pointer" className="fas fa-mouse-pointer"/>
-            </Link>
-          </React.Fragment>
-        ))}
-      </Gallery>
+    <div className="page-container">
+      <div id="top"></div>
+      <div className="carousel">
+        <section className="search-box">
+          <form onSubmit={search}>
+            <input className="search-input" type="text" onChange={handleChange} />
+            <input className="search-input" type="submit" value="Search"/>
+            <FontAwesome className="fas fa-search" />
+          </form>
+        </section>
+        <header>
+          <h2>Choose a topic</h2>
+        </header>
+        <Gallery
+          className="carousel-content"
+          index={index}
+          enableControls={true}
+          enableIndicators={true}
+          onRequestChange={i => {
+            setIndex(i);
+          }}
+        >
+          {images.map(image => (
+            <React.Fragment key={image.src}>
+              <Link to={image.link} onClick={x} className="topic-link">
+                <GalleryImage objectFit="contain" src={image.src} className="gallery-image">
+                </GalleryImage>
+              </Link>
+              <h5>{image.category}</h5>
+            </React.Fragment>
+          ))}
+        </Gallery>
+      </div>
+      <section className="gallery" id="gallery" ref={galleryRef}>
+        <ul className="masonry">
+          <Fragment>
+            {
+              response.map(item => {
+                return (
+                  <ImageContainer key={item.id} image={item} search={true} />
+                )
+              })
+            }
+          </Fragment>
+        </ul>
+        <Arrow id="toTop" to="top" smooth={true} duration={1000}><FontAwesome name="arrow-up" className="fas fa-chevron-up"></FontAwesome></Arrow>
+      </section>
     </div>
+
   )
 }
 

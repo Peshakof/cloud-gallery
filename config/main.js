@@ -27,7 +27,7 @@ app.use('/api', apiRouter);
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 
-  app.get('*', (req, res) => {
+  app.get('^/$', (req, res) => {
     fs.readFile(path.resolve('client/build/index.html'), 'UTF-8', (err, data) => {
       if (err) {
         console.log(err);
@@ -35,11 +35,12 @@ if (process.env.NODE_ENV === 'production') {
       }
       return res.send(data.replace(
         '<div id="root"></div>',
-         `<div id="root">${ReactDOMServer.renderToString(<App />)}</div>`))
+        `<div id="root">${ReactDOMServer.renderToString(<App />)}</div>`
+      ))
     })
   });
 }
-  
+
 app.listen(config.port, () => {
   console.log(`Server: Listening on ${config.port}`);
 });

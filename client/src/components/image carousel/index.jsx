@@ -148,7 +148,6 @@ const Carousel = () => {
         <Arrow id="toTop" to="top" smooth={true} duration={1000}><FontAwesome name="arrow-up" className="fas fa-chevron-up"></FontAwesome></Arrow>
       </section>
     </div>
-
   )
 }
 

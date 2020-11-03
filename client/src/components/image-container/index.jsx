@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
-import FittedImage from 'react-fitted-image';
+// import FittedImage from 'react-fitted-image';
+import ReactDynamicImport from 'react-dynamic-import';
+const loader = () => import(`react-fitted-image`);
+const FittedImage = ReactDynamicImport({ loader });
 
 const ImageContainer = (props) => {
-
     React.useEffect(()=>{
-        // console.log(props.image)
         if(props.search) {
             console.log(props.image)
         }

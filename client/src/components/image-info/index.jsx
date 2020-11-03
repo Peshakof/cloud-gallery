@@ -6,10 +6,13 @@ import ImageForm from '../image-form';
 import Comment from './comment';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import FittedImage from 'react-fitted-image';
+// import FittedImage from 'react-fitted-image';
 import anime from 'animejs/lib/anime.es.js';
 import { Link } from 'react-scroll';
 import './style.scss';
+import ReactDynamicImport from "react-dynamic-import";
+const loader = () => import(`react-fitted-image`);
+const FittedImage = ReactDynamicImport({ loader });
 
 class ImageInfo extends Component {
     constructor(props) {
@@ -22,7 +25,6 @@ class ImageInfo extends Component {
             uploader: {},
             currentUser: '',
             isLoading: false
-            //todo 
         }
         this.inputRef = React.createRef();
         this.editFormRef = React.createRef();
@@ -35,7 +37,7 @@ class ImageInfo extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const imageId = this.props.match.params.id
         const image = imageService.getCurrentImage(imageId);
         const comments = commentsService.getAllComments(imageId);
@@ -65,7 +67,6 @@ class ImageInfo extends Component {
                         }
                     })
             })
-
         )
     }
 
@@ -139,7 +140,6 @@ class ImageInfo extends Component {
                     console.error(err);
                 })
         }
-
     }
 
     handleChange(event) {
@@ -191,7 +191,6 @@ class ImageInfo extends Component {
                             src="https://i.pinimg.com/originals/dc/aa/7a/dcaa7a90d62a19169bfa46c1c6625696.gif"
                         />)
                     }
-
                 </div>
                 <div className="image-stats">
                     <p className="image-title">Title: {image.title}</p>
@@ -237,8 +236,6 @@ class ImageInfo extends Component {
                                     </p>
                                 </React.Fragment>) : null
                         }
-
-
                     </form>
                 </div>
             </section>

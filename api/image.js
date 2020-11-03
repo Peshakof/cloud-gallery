@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Image, User } = require('../models');
+require("regenerator-runtime/runtime");
 
 router.post('/uploadImage', async(req, res, next) => {
     const{title, category, imageUrl, user, likes} = req.body;

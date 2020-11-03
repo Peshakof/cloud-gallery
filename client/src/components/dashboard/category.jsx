@@ -1,6 +1,10 @@
 import React, { Fragment } from 'react';
 import imageService from '../../services/image-service';
-import ImageContainer from '../image-container';
+// import ImageContainer from '../image-container';
+import ReactDynamicImport from "react-dynamic-import";
+const loader = () => 
+import('../image-container');
+const ImageContainer = ReactDynamicImport({ loader });
 
 const Category = (props) => {
   const [images, setImages] = React.useState([]);

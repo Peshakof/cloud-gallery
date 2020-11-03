@@ -1,8 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import userService from '../../services/user-service';
-import ImageContainer from '../image-container';
+// import ImageContainer from '../image-container';
 import Cookies from 'js-cookie';
 import './style.scss';
+import ReactDynamicImport from "react-dynamic-import";
+const loader = () => 
+import('../image-container');
+const ImageContainer = ReactDynamicImport({ loader });
 
 class UserProfile extends Component {
   constructor(props) {

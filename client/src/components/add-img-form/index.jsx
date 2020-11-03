@@ -1,13 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import imageService from '../../services/image-service';
 import useImput from '../../hooks/userInputChange';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
-import FittedImage from 'react-fitted-image';
+// import FittedImage from 'react-fitted-image';
 import './style.scss';
 import '../register page/style.scss';
+import ReactDynamicImport from "react-dynamic-import";
+const loader = () => import(`react-fitted-image`);
+const FittedImage = ReactDynamicImport({ loader });
 
 const AddImageForm = (props) => {
   const [image, setImage] = useState('');
@@ -51,8 +54,6 @@ const AddImageForm = (props) => {
   return (
     <section className="img-form">
       <section className="img-container">
-
-        {/* <img src={image} alt="" /> */}
         <FittedImage
           fit="contain"
           loader={<div>Loading</div>}
@@ -87,9 +88,6 @@ const AddImageForm = (props) => {
             <option value="high-tech">high-tech</option>
           </select>
         </p>
-        {/* <p>
-          <input type="text" name="descibtion"/>
-        </p> */}
         <p><input className="submit-btn" type="submit" value="save" /></p>
       </form>
     </section>
